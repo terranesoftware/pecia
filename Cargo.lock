@@ -3,17 +3,17 @@
 version = 4
 
 [[package]]
-name = "gloss"
+name = "ken"
 version = "0.1.0"
 
 [[package]]
-name = "gloss-cli"
+name = "ken-cli"
 version = "0.1.0"
 
 [[package]]
-name = "gloss-desktop"
+name = "ken-desktop"
 version = "0.1.0"
 
 [[package]]
-name = "gloss-tui"
+name = "ken-tui"
 version = "0.1.0"
