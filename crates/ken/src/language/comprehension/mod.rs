@@ -1,8 +1,6 @@
-pub trait ComprehensionSpec {
-    type Description;
-    type Diagnostic;
-    type Highlight;
-}
+pub mod spec;
+
+use crate::language::comprehension::spec::ComprehensionSpec;
 
 /// Entities that contribute to the understanding of a language.
 pub struct Comprehension<C: ComprehensionSpec> {

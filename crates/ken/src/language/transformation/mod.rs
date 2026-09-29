@@ -1,15 +1,12 @@
-pub trait TransformationSpec {
-    type Completion;
-    type Formatter;
-    type Propagation;
-    type Suggestion;
-}
+pub mod spec;
+
+use crate::language::transformation::spec::TransformationSpec;
 
 /// Entities that contribute to the manipulation of a language.
 pub struct Transformation<T: TransformationSpec> {
     completions: Vec<T::Completion>,
     formatter: T::Formatter,
-    propagation: T::Propagation,
+    propagator: T::Propagator,
     suggestions: Vec<T::Suggestion>,
 }
 
@@ -30,12 +27,12 @@ impl<T: TransformationSpec> Transformation<T> {
         &mut self.formatter
     }
 
-    pub fn propagation(&self) -> &T::Propagation {
-        &self.propagation
+    pub fn propagator(&self) -> &T::Propagator {
+        &self.propagator
     }
 
-    pub fn propagation_mut(&mut self) -> &mut T::Propagation {
-        &mut self.propagation
+    pub fn propagator_mut(&mut self) -> &mut T::Propagator {
+        &mut self.propagator
     }
 
     pub fn suggestions(&self) -> &[T::Suggestion] {

@@ -1,7 +1,6 @@
-pub trait TraversalSpec {
-    type Grammar;
-    type Index;
-}
+pub mod spec;
+
+use crate::language::traversal::spec::TraversalSpec;
 
 /// Entities that contribute to the navigation of a language.
 pub struct Traversal<T: TraversalSpec> {
