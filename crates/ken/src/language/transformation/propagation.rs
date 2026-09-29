@@ -1,3 +1,0 @@
-pub enum Propagation {
-    
-}
