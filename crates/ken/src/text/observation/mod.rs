@@ -6,6 +6,10 @@ use crate::text::observation::buffer::Buffer;
 pub struct Observation(Vec<Buffer>);
 
 impl Observation {
+    pub fn new() -> Self {
+        Self(Vec::new())
+    }
+    
     pub fn buffers(&self) -> &[Buffer] {
         &self.0
     }
