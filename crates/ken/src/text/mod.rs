@@ -10,3 +10,17 @@ pub struct Text {
     transformation: Transformation,
     traversal: Traversal
 }
+
+impl Text {
+    pub fn observation(&self) -> &Observation {
+        &self.observation
+    }
+
+    pub fn transformation(&self) -> &Transformation {
+        &self.transformation
+    }
+
+    pub fn traversal(&self) -> &Traversal {
+        &self.traversal
+    }
+}

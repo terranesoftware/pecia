@@ -17,10 +17,6 @@ impl Buffer {
         &self.content
     }
 
-    pub fn content_mut(&mut self) -> &mut [u8] {
-        &mut self.content
-    }
-
     pub fn encoding(&self) -> Encoding {
         self.encoding
     }
@@ -31,9 +27,5 @@ impl Buffer {
 
     pub fn resource(&self) -> &Resource {
         &self.resource
-    }
-
-    pub fn resource_mut(&mut self) -> &mut Resource {
-        &mut self.resource
     }
 }

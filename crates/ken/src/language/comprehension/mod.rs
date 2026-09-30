@@ -14,23 +14,11 @@ impl<C: ComprehensionSpec> Comprehension<C> {
         &self.descriptions
     }
 
-    pub fn descriptions_mut(&mut self) -> &mut [C::Description] {
-        &mut self.descriptions
-    }
-
     pub fn diagnostics(&self) -> &[C::Diagnostic] {
         &self.diagnostics
     }
 
-    pub fn diagnostics_mut(&mut self) -> &mut [C::Diagnostic] {
-        &mut self.diagnostics
-    }
-
     pub fn highlights(&self) -> &[C::Highlight] {
         &self.highlights
-    }
-
-    pub fn highlights_mut(&mut self) -> &mut [C::Highlight] {
-        &mut self.highlights
     }
 }
