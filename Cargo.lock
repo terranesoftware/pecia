@@ -38,6 +38,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4e7648175b45a9a48536d676f68d918270699102aa8dab5496df06904c914600"
 
 [[package]]
+name = "cli"
+version = "0.1.0"
+
+[[package]]
 name = "constant_time_eq"
 version = "0.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -57,6 +61,10 @@ name = "deranged"
 version = "0.5.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7cd812cc2bc1d69d4764bd80df88b4317eaef9e773c75226407d9bc0876b211c"
+
+[[package]]
+name = "desktop"
+version = "0.1.0"
 
 [[package]]
 name = "equivalent"
@@ -94,18 +102,6 @@ dependencies = [
  "indexmap",
  "time",
 ]
-
-[[package]]
-name = "ken-cli"
-version = "0.1.0"
-
-[[package]]
-name = "ken-desktop"
-version = "0.1.0"
-
-[[package]]
-name = "ken-tui"
-version = "0.1.0"
 
 [[package]]
 name = "libc"
@@ -198,6 +194,10 @@ name = "time-core"
 version = "0.1.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9e1c906769ad99c88eaa54e728060edef082f8e358ff32030cb7c7d315e81109"
+
+[[package]]
+name = "tui"
+version = "0.1.0"
 
 [[package]]
 name = "unicode-ident"
