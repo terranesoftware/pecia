@@ -1,20 +1,20 @@
 pub mod buffer;
+pub mod history;
 
-use crate::text::observation::buffer::Buffer;
+use crate::text::observation::{buffer::Buffer, history::History};
 
-/// Entity that contributes to the inspection of text.
-pub struct Observation(Vec<Buffer>);
+/// Entities that contributes to the inspection of text.
+pub struct Observation {
+    buffers: Vec<Buffer>,
+    history: History
+}
 
 impl Observation {
-    pub fn new() -> Self {
-        Self(Vec::new())
-    }
-    
     pub fn buffers(&self) -> &[Buffer] {
-        &self.0
+        &self.buffers
     }
 
-    pub fn buffers_mut(&mut self) -> &mut [Buffer] {
-        &mut self.0
+    pub fn history(&self) -> &History {
+        &self.history
     }
 }
