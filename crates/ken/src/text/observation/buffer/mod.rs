@@ -2,18 +2,24 @@ pub mod encoding;
 pub mod region;
 pub mod resource;
 
+use buffers::Buffer as BufferImpl;
+
 use crate::text::observation::buffer::{encoding::Encoding, region::Region, resource::Resource};
 
 pub struct Buffer {
-    content: Vec<u8>,
+    implementation: BufferImpl,
     encoding: Encoding,
     region: Region,
     resource: Resource
 }
 
 impl Buffer {
-    pub fn content(&self) -> &[u8] {
-        &self.content
+    pub fn implementation(&self) -> &BufferImpl {
+        &self.implementation
+    }
+
+    pub fn implementation_mut(&mut self) -> &mut BufferImpl {
+        &mut self.implementation
     }
 
     pub fn encoding(&self) -> Encoding {
@@ -22,6 +28,10 @@ impl Buffer {
 
     pub fn region(&self) -> Region {
         self.region
+    }
+
+    pub fn region_mut(&mut self) -> &mut Region {
+        &mut self.region
     }
 
     pub fn resource(&self) -> &Resource {

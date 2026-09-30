@@ -1,16 +1,20 @@
-use std::range::RangeInclusive;
+use std::range::Range;
 
 #[derive(Clone, Copy)]
-pub struct Region(RangeInclusive<usize>);
+pub struct Region(Range<usize>);
 
 impl Region {
-    pub fn new(start: usize, last: usize) -> Self {
-        assert!(start > last, "An empty region is illogical");
+    pub fn new(start: usize, end: usize) -> Self {
+        assert!(start <= end, "A reversed region is illogical");
 
-        Self(RangeInclusive { start, last })
+        Self(Range { start, end })
     }
 
-    pub fn range(&self) -> RangeInclusive<usize> {
+    pub fn range(&self) -> Range<usize> {
         self.0
+    }
+
+    pub fn range_mut(&mut self) -> &mut Range<usize> {
+        &mut self.0
     }
 }
