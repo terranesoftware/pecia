@@ -1,6 +1,4 @@
-pub mod spec;
-
-use crate::language::transformation::spec::TransformationSpec;
+use languages::traits::transformation::Transformation as TransformationSpec;
 
 /// Entities that contribute to the manipulation of a language.
 pub struct Transformation<T: TransformationSpec> {

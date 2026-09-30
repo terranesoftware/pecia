@@ -1,6 +1,4 @@
-pub mod spec;
-
-use crate::language::traversal::spec::TraversalSpec;
+use languages::traits::traversal::Traversal as TraversalSpec;
 
 /// Entities that contribute to the navigation of a language.
 pub struct Traversal<T: TraversalSpec> {

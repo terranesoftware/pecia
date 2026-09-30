@@ -1,9 +1,10 @@
 pub mod comprehension;
-pub mod kind;
 pub mod transformation;
 pub mod traversal;
 
-use crate::language::{comprehension::Comprehension, kind::LanguageKind, transformation::Transformation, traversal::Traversal};
+use languages::traits::Language as LanguageKind;
+
+use crate::language::{comprehension::Comprehension, transformation::Transformation, traversal::Traversal};
 
 /// Entities that contribute to the use of a language.
 pub struct Language<L: LanguageKind> {

@@ -100,8 +100,13 @@ version = "0.1.0"
 dependencies = [
  "blake3",
  "indexmap",
+ "languages",
  "time",
 ]
+
+[[package]]
+name = "languages"
+version = "0.1.0"
 
 [[package]]
 name = "libc"

@@ -1,6 +1,4 @@
-pub mod spec;
-
-use crate::language::comprehension::spec::ComprehensionSpec;
+use languages::traits::comprehension::Comprehension as ComprehensionSpec;
 
 /// Entities that contribute to the understanding of a language.
 pub struct Comprehension<C: ComprehensionSpec> {
