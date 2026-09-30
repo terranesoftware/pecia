@@ -1,14 +1,13 @@
 pub mod encoding;
+pub mod region;
 pub mod resource;
 
-use std::range::RangeInclusive;
-
-use crate::text::observation::buffer::{encoding::Encoding, resource::Resource};
+use crate::text::observation::buffer::{encoding::Encoding, region::Region, resource::Resource};
 
 pub struct Buffer {
     content: Vec<u8>,
     encoding: Encoding,
-    region: RangeInclusive<usize>,
+    region: Region,
     resource: Resource
 }
 
@@ -21,7 +20,7 @@ impl Buffer {
         self.encoding
     }
 
-    pub fn region(&self) -> RangeInclusive<usize> {
+    pub fn region(&self) -> Region {
         self.region
     }
 
