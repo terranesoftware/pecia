@@ -1,5 +1,4 @@
 pub mod edit;
-pub mod working;
 
 use blake3::Hash;
 use time::Timestamp;
