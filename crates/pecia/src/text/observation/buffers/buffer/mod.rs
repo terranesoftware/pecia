@@ -1,11 +1,10 @@
 pub mod encoding;
 pub mod operations;
 pub mod region;
-pub mod resource;
 
 use buffers::Buffer as BufferImpl;
 
-use crate::text::observation::buffer::{encoding::Encoding, region::Region, resource::Resource};
+use crate::text::observation::{buffers::buffer::{encoding::Encoding, region::Region}, resource::Resource};
 
 pub struct Buffer {
     implementation: BufferImpl,

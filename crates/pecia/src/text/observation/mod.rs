@@ -1,20 +1,21 @@
-pub mod buffer;
+pub mod buffers;
+pub mod resource;
 pub mod scope;
 pub mod shard;
 
 use indexmap::IndexMap;
 
-use crate::text::observation::{buffer::Buffer, scope::Scope, shard::Shard};
+use crate::text::observation::{buffers::Buffers, scope::Scope, shard::Shard};
 
 /// Entities that contributes to the inspection of text.
 pub struct Observation {
-    buffers: Vec<Buffer>,
+    buffers: Buffers,
     shards: IndexMap<Scope, Shard>
 }
 
 impl Observation {
-    /// Returns a reference to the contained buffers.
-    pub fn buffers(&self) -> &[Buffer] {
+    /// Returns a reference to the contained `Buffers`.
+    pub fn buffers(&self) -> &Buffers {
         &self.buffers
     }
 

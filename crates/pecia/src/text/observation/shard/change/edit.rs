@@ -1,4 +1,4 @@
-use crate::text::observation::buffer::resource::Resource;
+use crate::text::observation::resource::Resource;
 
 pub struct Edit {
     at: usize,

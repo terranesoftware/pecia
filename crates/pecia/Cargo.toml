@@ -8,4 +8,5 @@ blake3 = "1.8.7"
 buffers = { version = "0.1.0", path = "../buffers" }
 indexmap = "2.14.2"
 languages = { version = "0.1.0", path = "../languages" }
+slotmap = "1.1.1"
 time = "0.3.55"

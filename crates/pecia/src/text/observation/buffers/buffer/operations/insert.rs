@@ -1,4 +1,4 @@
-use crate::text::observation::buffer::Buffer;
+use crate::text::observation::buffers::buffer::Buffer;
 
 impl Buffer {
     pub fn insert(

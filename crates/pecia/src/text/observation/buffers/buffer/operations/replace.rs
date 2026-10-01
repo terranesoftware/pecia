@@ -1,6 +1,6 @@
 use std::range::Range;
 
-use crate::text::observation::buffer::{Buffer, region::Region};
+use crate::text::observation::buffers::buffer::{Buffer, region::Region};
 
 impl Buffer {
     pub fn replace(
