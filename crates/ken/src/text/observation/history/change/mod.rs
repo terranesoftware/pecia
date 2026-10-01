@@ -1,4 +1,5 @@
 pub mod edit;
+pub mod working;
 
 use blake3::Hash;
 use time::Timestamp;
@@ -7,7 +8,7 @@ use crate::text::observation::history::change::edit::Edit;
 
 pub struct Change {
     edits: Vec<Edit>,
-    parent: Hash,
+    parent: Option<Hash>,
     timestamp: Timestamp
 }
 
@@ -16,7 +17,7 @@ impl Change {
         &self.edits
     }
 
-    pub fn parent(&self) -> Hash {
+    pub fn parent(&self) -> Option<Hash> {
         self.parent
     }
 
