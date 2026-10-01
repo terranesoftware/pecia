@@ -1,22 +1,18 @@
-pub mod change;
-pub mod reference;
+pub mod scope;
+pub mod shard;
 
-use blake3::Hash;
 use indexmap::IndexMap;
 
-use crate::text::observation::history::{change::Change, reference::Reference};
+use crate::text::observation::history::{scope::Scope, shard::Shard};
 
-pub struct History {
-    changes: IndexMap<Hash, Change>,
-    references: Vec<Reference>
-}
+pub struct History(IndexMap<Scope, Shard>);
 
 impl History {
-    pub fn changes(&self) -> &IndexMap<Hash, Change> {
-        &self.changes
+    pub fn new() -> Self {
+        Self(IndexMap::new())
     }
 
-    pub fn references(&self) -> &[Reference] {
-        &self.references
+    pub fn shards(&self) -> &IndexMap<Scope, Shard> {
+        &self.0
     }
 }

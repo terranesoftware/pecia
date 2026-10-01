@@ -8,6 +8,20 @@ pub struct Edit {
 }
 
 impl Edit {
+    pub fn new(
+        at: usize,
+        replaced: Vec<u8>,
+        replacement: Vec<u8>,
+        resource: Resource
+    ) -> Self {
+        Self {
+            at,
+            replaced,
+            replacement,
+            resource
+        }
+    }
+    
     pub fn at(&self) -> usize {
         self.at
     }
