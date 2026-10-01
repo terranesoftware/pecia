@@ -2,3 +2,7 @@
 pub struct Traversal {
     
 }
+
+pub struct Delta {
+    
+}
