@@ -1,4 +1,5 @@
 pub mod encoding;
+pub mod operations;
 pub mod region;
 pub mod resource;
 
