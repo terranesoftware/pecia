@@ -13,10 +13,12 @@ pub struct Observation {
 }
 
 impl Observation {
+    /// Returns a reference to the contained buffers.
     pub fn buffers(&self) -> &[Buffer] {
         &self.buffers
     }
 
+    /// Returns a reference to the contained shards.
     pub fn shards(&self) -> &IndexMap<Scope, Shard> {
         &self.shards
     }
