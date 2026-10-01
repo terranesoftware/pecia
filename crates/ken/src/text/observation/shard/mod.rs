@@ -4,7 +4,7 @@ pub mod reference;
 use blake3::Hash;
 use indexmap::IndexMap;
 
-use crate::text::observation::history::shard::{change::Change, reference::Reference};
+use crate::text::observation::shard::{change::Change, reference::Reference};
 
 pub struct Shard {
     changes: IndexMap<Hash, Change>,

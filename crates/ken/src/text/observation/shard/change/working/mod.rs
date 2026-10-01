@@ -2,7 +2,7 @@ pub mod operations;
 
 use blake3::Hash;
 
-use crate::text::observation::history::shard::change::edit::Edit;
+use crate::text::observation::shard::change::edit::Edit;
 
 pub struct WorkingChange {
     edits: Vec<Edit>,

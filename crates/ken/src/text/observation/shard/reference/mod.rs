@@ -2,7 +2,7 @@ pub mod kind;
 
 use blake3::Hash;
 
-use crate::text::observation::history::shard::reference::kind::ReferenceKind;
+use crate::text::observation::shard::reference::kind::ReferenceKind;
 
 pub struct Reference {
     kind: ReferenceKind,

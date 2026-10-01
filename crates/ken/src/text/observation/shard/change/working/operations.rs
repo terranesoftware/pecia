@@ -1,6 +1,6 @@
 use time::Timestamp;
 
-use crate::text::observation::history::shard::change::{Change, edit::Edit, working::WorkingChange};
+use crate::text::observation::shard::change::{Change, edit::Edit, working::WorkingChange};
 
 impl WorkingChange {
     pub fn add(&mut self, edits: Vec<Edit>) {

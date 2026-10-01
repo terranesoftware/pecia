@@ -1,12 +1,15 @@
 pub mod buffer;
-pub mod history;
+pub mod scope;
+pub mod shard;
 
-use crate::text::observation::{buffer::Buffer, history::History};
+use indexmap::IndexMap;
+
+use crate::text::observation::{buffer::Buffer, scope::Scope, shard::Shard};
 
 /// Entities that contributes to the inspection of text.
 pub struct Observation {
     buffers: Vec<Buffer>,
-    history: History
+    shards: IndexMap<Scope, Shard>
 }
 
 impl Observation {
@@ -14,7 +17,7 @@ impl Observation {
         &self.buffers
     }
 
-    pub fn history(&self) -> &History {
-        &self.history
+    pub fn shards(&self) -> &IndexMap<Scope, Shard> {
+        &self.shards
     }
 }
