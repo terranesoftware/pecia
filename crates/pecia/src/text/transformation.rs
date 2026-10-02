@@ -1,0 +1,54 @@
+use blake3::Hash;
+use buffers::kind::BufferKind;
+
+use crate::text::{observation::{Observation, buffers::{BufferKey, buffer::{encoding::Encoding, region::Region}}, resource::Resource}, traversal::Delta};
+
+/// The entity that contributes to the manipulation of text.
+pub struct Transformation;
+
+impl Transformation {
+    pub fn checkout(
+        delta: Delta,
+        destination: Hash,
+        observation: &mut Observation
+    ) {
+        
+    }
+    
+    pub fn close(key: BufferKey, observation: &mut Observation) {
+        observation.buffers_mut().close(key);
+    }
+
+    pub fn edit(
+        delta: Delta,
+        observation: &mut Observation
+    ) {
+        
+    }
+
+    pub fn open(
+        observation: &mut Observation,
+        encoding: Encoding,
+        implementation: BufferKind,
+        region: Region,
+        resource: Resource
+    ) -> BufferKey {
+        observation.buffers_mut().open(encoding, implementation, region, resource)
+    }
+
+    pub fn reset(
+        delta: Delta,
+        destination: Hash,
+        observation: &mut Observation
+    ) {
+        
+    }
+
+    pub fn save(key: BufferKey, observation: &mut Observation) {
+        // Need some type of persist operation for a buffer
+    }
+
+    pub fn squash(observation: &mut Observation) {
+        
+    }
+}

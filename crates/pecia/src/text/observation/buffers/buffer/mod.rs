@@ -7,23 +7,37 @@ use buffers::Buffer as BufferImpl;
 use crate::text::observation::{buffers::buffer::{encoding::Encoding, region::Region}, resource::Resource};
 
 pub struct Buffer {
-    implementation: BufferImpl,
     encoding: Encoding,
+    implementation: BufferImpl,
     region: Region,
     resource: Resource
 }
 
 impl Buffer {
+    pub fn new(
+        encoding: Encoding,
+        implementation: BufferImpl,
+        region: Region,
+        resource: Resource
+    ) -> Self {
+        Self {
+            encoding,
+            implementation,
+            region,
+            resource
+        }
+    }
+    
+    pub fn encoding(&self) -> Encoding {
+        self.encoding
+    }
+
     pub fn implementation(&self) -> &BufferImpl {
         &self.implementation
     }
-
+    
     pub fn implementation_mut(&mut self) -> &mut BufferImpl {
         &mut self.implementation
-    }
-
-    pub fn encoding(&self) -> Encoding {
-        self.encoding
     }
 
     pub fn region(&self) -> Region {

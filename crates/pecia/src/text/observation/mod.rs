@@ -19,6 +19,10 @@ impl Observation {
         &self.buffers
     }
 
+    pub fn buffers_mut(&mut self) -> &mut Buffers {
+        &mut self.buffers
+    }
+
     /// Returns a reference to the contained shards.
     pub fn shards(&self) -> &IndexMap<Scope, Shard> {
         &self.shards
