@@ -19,7 +19,7 @@ impl Observation {
         &self.buffers
     }
 
-    pub fn buffers_mut(&mut self) -> &mut Buffers {
+    pub(crate) fn buffers_mut(&mut self) -> &mut Buffers {
         &mut self.buffers
     }
 
