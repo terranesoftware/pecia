@@ -27,4 +27,8 @@ impl Observation {
     pub fn shards(&self) -> &IndexMap<Scope, Shard> {
         &self.shards
     }
+
+    pub(crate) fn shards_mut(&mut self) -> &mut IndexMap<Scope, Shard> {
+        &mut self.shards
+    }
 }

@@ -34,4 +34,8 @@ impl Buffers {
     pub fn map(&self) -> &SlotMap<BufferKey, Buffer> {
         &self.map
     }
+
+    pub fn map_mut(&mut self) -> &mut SlotMap<BufferKey, Buffer> {
+        &mut self.map
+    }
 }

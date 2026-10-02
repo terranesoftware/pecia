@@ -1,3 +1,5 @@
+use std::assert_matches;
+
 use blake3::Hash;
 use buffers::kind::BufferKind;
 
@@ -36,6 +38,19 @@ impl Transformation {
         observation.buffers_mut().open(encoding, implementation, region, resource)
     }
 
+    pub fn persist(
+        key: BufferKey,
+        observation: &mut Observation,
+        resource: Resource
+    ) {
+        assert_matches!(resource, Resource::Memory | Resource::Stdin, "Cannot persist to an ephemeral resource");
+        
+        let buffer = observation.buffers_mut().map_mut().get_mut(key).expect("Buffer has already been closed");
+        assert_matches!(buffer.resource(), Resource::Memory | Resource::Stdin, "Buffer is already persisted");
+        
+        *buffer.resource_mut() = resource;
+    }
+
     pub fn reset(
         delta: Delta,
         destination: Hash,
@@ -44,11 +59,18 @@ impl Transformation {
         
     }
 
-    pub fn save(key: BufferKey, observation: &mut Observation) {
-        // Need some type of persist operation for a buffer
+    pub fn save(
+        key: BufferKey,
+        observation: &mut Observation
+    ) {
+        let buffer = observation.buffers().map().get(key).expect("Buffer has already been closed");
+        // Need some type of save operation
     }
 
     pub fn squash(observation: &mut Observation) {
-        
+        for (_, shard) in observation.shards_mut() {
+            let head = shard.head();
+            shard.changes_mut().retain(|key, _| *key == head);
+        }
     }
 }
