@@ -10,6 +10,7 @@ use crate::text::observation::shard::{change::Change, reference::Reference};
 pub struct Shard {
     head: Hash,
     changes: IndexMap<Hash, Change>,
+    children: IndexMap<Hash, Vec<Hash>>,
     references: Vec<Reference>
 }
 
@@ -22,6 +23,11 @@ impl Shard {
     /// Returns a reference to the contained changes.
     pub fn changes(&self) -> &IndexMap<Hash, Change> {
         &self.changes
+    }
+
+    /// Returns a reference to the contained children.
+    pub fn children(&self) -> &IndexMap<Hash, Vec<Hash>> {
+        &self.children
     }
 
     /// Returns a mutable reference to the contained changes.
