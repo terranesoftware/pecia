@@ -1,8 +1,7 @@
-use std::path::PathBuf;
+use crate::text::observation::resource::Resource;
 
 /// The persistence location of a `Shard`.
 pub enum Scope {
-    Directory(PathBuf),
-    // Decide how to identify this
-    Ephemeral
+    Directory(Resource),
+    Ephemeral(Resource)
 }

@@ -10,10 +10,20 @@ use crate::text::observation::{buffers::Buffers, scope::Scope, shard::Shard};
 /// Entities that contributes to the inspection of text.
 pub struct Observation {
     buffers: Buffers,
+    counter: usize,
     shards: IndexMap<Scope, Shard>
 }
 
 impl Observation {
+    /// Creates an `Observation`.
+    pub fn new(buffers: Buffers) -> Self {
+        Self {
+            buffers,
+            counter: 0,
+            shards: IndexMap::new()
+        }
+    }
+    
     /// Returns a reference to the contained `Buffers`.
     pub fn buffers(&self) -> &Buffers {
         &self.buffers
@@ -21,6 +31,15 @@ impl Observation {
 
     pub(crate) fn buffers_mut(&mut self) -> &mut Buffers {
         &mut self.buffers
+    }
+
+    /// Returns a copy to the contained counter.
+    pub fn counter(&self) -> usize {
+        self.counter
+    }
+
+    pub(crate) fn counter_mut(&mut self) -> &mut usize {
+        &mut self.counter
     }
 
     /// Returns a reference to the contained shards.
