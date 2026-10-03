@@ -1,7 +1,7 @@
 use crate::text::observation::resource::Resource;
 
 /// The persistence location of a `Shard`.
-#[derive(Hash, PartialEq, Eq)]
+#[derive(Eq, Hash, PartialEq)]
 pub enum Scope {
     Directory(Resource),
     Ephemeral(Resource)

@@ -3,14 +3,14 @@ use std::assert_matches;
 use blake3::Hash;
 use buffers::kind::BufferKind;
 
-use crate::text::{observation::{Observation, buffers::{BufferKey, buffer::{encoding::Encoding, region::Region}}, resource::Resource}, traversal::delta::Delta};
+use crate::text::{observation::{Observation, buffers::{BufferKey, buffer::{encoding::Encoding, region::Region}}, resource::Resource}, traversal::diff::Diff};
 
 /// The entity that contributes to the manipulation of text.
 pub struct Transformation;
 
 impl Transformation {
     pub fn checkout(
-        delta: Delta,
+        delta: Vec<(Resource, Vec<Diff>)>,
         destination: Hash,
         observation: &mut Observation
     ) {
@@ -22,7 +22,7 @@ impl Transformation {
     }
 
     pub fn edit(
-        delta: Delta,
+        delta: Vec<(Resource, Vec<Diff>)>,
         observation: &mut Observation
     ) {
         
@@ -52,7 +52,7 @@ impl Transformation {
     }
 
     pub fn reset(
-        delta: Delta,
+        delta: Vec<(Resource, Vec<Diff>)>,
         destination: Hash,
         observation: &mut Observation
     ) {

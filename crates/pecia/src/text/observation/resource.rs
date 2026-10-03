@@ -1,6 +1,6 @@
 use std::path::PathBuf;
 
-#[derive(Debug, Hash, PartialEq, Eq)]
+#[derive(Clone, Debug, Eq, Hash, PartialEq)]
 pub enum Resource {
     Directory(PathBuf),
     File(PathBuf),
