@@ -21,10 +21,13 @@ pub fn create(
             let range = diff.region().range();
             
             start < range.end && end > range.start
-        }).peekable();
+        })
+        .peekable();
         
+        // See if we can apply this edit to a diff/diffs
         apply(edit, end, &mut overlapped, start, targeted);
         
+        // If no overlap, just create a new diff and insert it
         if !overlapped {
             let diff = Diff::new(
                 Region::new(edit.at(), edit.at() + edit.replaced().len()),
@@ -35,6 +38,7 @@ pub fn create(
         }
     }
     else {
+        // If no resource, create a new diff, wrap it in a Vec, and insert it as the first for its resource
         let diff = Diff::new(
             Region::new(edit.at(), edit.at() + edit.replaced().len()),
             edit.replacement().to_vec()
