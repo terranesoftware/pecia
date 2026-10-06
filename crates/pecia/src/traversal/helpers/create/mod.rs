@@ -18,7 +18,7 @@ pub fn create(
         let mut overlapped = false;
         
         // Create a peekable iterator with the diffs that overlap with the edit
-        // The diffs are guaranteed not to overlap due to the coalesce at the end
+        // The diffs are guaranteed not to overlap since each iteration "glues" them together with each edit applied
         let targeted = diffs.iter_mut().filter(|diff| {
             let range = diff.region().range();
             

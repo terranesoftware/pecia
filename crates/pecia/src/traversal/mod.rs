@@ -4,7 +4,7 @@ pub mod helpers;
 
 use blake3::Hash;
 
-use crate::{observation::{Observation, scope::Scope}, traversal::{delta::Delta, direction::Direction, helpers::{change, coalesce, create}}};
+use crate::{observation::{Observation, scope::Scope}, traversal::{delta::Delta, direction::Direction, helpers::{change, create}}};
 
 /// The entity that contribute to the navigation of text.
 pub struct Traversal;
@@ -24,7 +24,7 @@ impl Traversal {
             create(deltas, edit);
         }
 
-        // Coalesce diffs within each resource
-        coalesce(deltas);
+        // TODO: Coalesce diffs within each resource
+        // Deferred due to it being an optimization, not a necessity
     }
 }
