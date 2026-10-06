@@ -1,5 +1,5 @@
-use crate::{observation::resource::Resource, traversal::diff::Diff};
+use crate::traversal::delta::Delta;
 
-pub(crate) fn coalesce(deltas: &mut Vec<(Resource, Vec<Diff>)>) {
+pub(crate) fn coalesce(deltas: &mut Vec<Delta>) {
     todo!()
 }

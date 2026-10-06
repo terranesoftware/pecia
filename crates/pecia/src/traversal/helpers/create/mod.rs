@@ -1,14 +1,16 @@
 mod apply;
 mod insert;
 
-use crate::{observation::{buffers::buffer::region::Region, resource::Resource, shard::change::edit::Edit}, traversal::{diff::Diff, helpers::create::{apply::apply, insert::insert}}};
+use crate::{observation::{buffers::buffer::region::Region, shard::change::edit::Edit}, traversal::{delta::{Delta, diff::Diff}, helpers::create::{apply::apply, insert::insert}}};
 
 pub fn create(
-    deltas: &mut Vec<(Resource, Vec<Diff>)>,
+    deltas: &mut Vec<Delta>,
     edit: &Edit
 ) {
     // Find if there are already diffs for the edit's resource
-    if let Some((_, diffs)) = deltas.iter_mut().find(|delta| &delta.0 == edit.resource()) {
+    if let Some(delta) = deltas.iter_mut().find(|delta| delta.resource() == edit.resource()) {
+        let diffs = delta.diffs_mut();
+        
         let start = edit.at();
         let end = edit.at() + edit.replaced().len();
         
@@ -44,6 +46,6 @@ pub fn create(
             edit.replacement().to_vec()
         );
         
-        deltas.push((edit.resource().clone(), vec![diff]));
+        deltas.push(Delta::new(vec![diff], edit.resource().clone()));
     }
 }

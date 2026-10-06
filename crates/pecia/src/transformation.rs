@@ -3,7 +3,7 @@ use std::assert_matches;
 use blake3::Hash;
 use buffers::kind::BufferKind;
 
-use crate::{observation::{Observation, buffers::{BufferKey, buffer::{encoding::Encoding, region::Region}}, resource::Resource}, traversal::diff::Diff};
+use crate::{observation::{Observation, buffers::{BufferKey, buffer::{encoding::Encoding, region::Region}}, resource::Resource}, traversal::delta::diff::Diff};
 
 /// The entity that contributes to the manipulation of text.
 pub struct Transformation;

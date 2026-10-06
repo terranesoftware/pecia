@@ -1,17 +1,17 @@
-pub mod diff;
+pub mod delta;
 pub mod direction;
 pub mod helpers;
 
 use blake3::Hash;
 
-use crate::{observation::{Observation, resource::Resource, scope::Scope}, traversal::{diff::Diff, direction::Direction, helpers::{change, coalesce, create}}};
+use crate::{observation::{Observation, scope::Scope}, traversal::{delta::Delta, direction::Direction, helpers::{change, coalesce, create}}};
 
 /// The entity that contribute to the navigation of text.
 pub struct Traversal;
 
 impl Traversal {
     pub fn route(
-        deltas: &mut Vec<(Resource, Vec<Diff>)>,
+        deltas: &mut Vec<Delta>,
         destination: (Scope, Hash),
         direction: Direction,
         observation: &Observation

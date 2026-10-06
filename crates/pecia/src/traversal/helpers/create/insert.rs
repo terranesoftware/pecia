@@ -1,4 +1,4 @@
-use crate::traversal::diff::Diff;
+use crate::traversal::delta::diff::Diff;
 
 pub(super) fn insert(
     diff: Diff,
