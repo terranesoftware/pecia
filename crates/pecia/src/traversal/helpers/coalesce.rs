@@ -1,24 +1,40 @@
-use crate::traversal::delta::Delta;
+use std::mem::take;
+
+use crate::{observation::buffers::buffer::region::Region, traversal::delta::{Delta, diff::Diff}};
 
 pub(crate) fn coalesce(deltas: &mut Vec<Delta>) {
     for delta in deltas {
-        // TODO: Have to create a whole new Vec<Diff>, just append non-coalesced diffs in again
+        // New coalesced replacement for the diff
+        // Could technically reuse an existing diff, might do it, but doing this now for simplicity
         let mut replacement: Vec<u8> = Vec::new();
-        let mut diffs = delta.diffs().iter().peekable();
+        
+        // Splice bound
+        let mut start: usize;
+        
+        let mut diffs = delta.diffs_mut();
+        let mut iterator = delta.diffs_mut().iter().enumerate().peekable();
 
-        while let Some(diff) = diffs.next() {
-            let end = diff.region().range().end;
+        while let Some((first, diff)) = iterator.next() {
+            // Check if replacement has been added to
+            // If not, then set this element to where to start the splice
+            if replacement.is_empty() {
+                start = first;
+            }
             
-            if let Some(next) = diffs.peek() {
-                let start = next.region().range().start;
-
-                if start == end {
+            if let Some((second, next)) = iterator.peek() {
+                if diff.region().range().end == next.region().range().start {
                     replacement.extend(diff.replacement());
                 }
             }
             else {
                 if !replacement.is_empty() {
+                    let start = diffs[start].region().range().start;
+                    let diff = Diff::new(
+                        Region::new(start, diff.region().range().end),
+                        take(&mut replacement)
+                    );
                     
+                    diffs.splice(start..=first, [diff]);
                 }
             }
         }
