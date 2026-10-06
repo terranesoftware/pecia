@@ -1,20 +1,29 @@
+mod truncate;
+
 use std::assert_matches;
 
 use blake3::Hash;
 use buffers::kind::BufferKind;
 
-use crate::{observation::{Observation, buffers::{BufferKey, buffer::{encoding::Encoding, region::Region}}, resource::Resource}, traversal::delta::diff::Diff};
+use crate::{observation::{Observation, buffers::{BufferKey, buffer::{encoding::Encoding, region::Region}}, resource::Resource, scope::Scope}, transformation::truncate::truncate, traversal::delta::Delta};
 
 /// The entity that contributes to the manipulation of text.
 pub struct Transformation;
 
 impl Transformation {
     pub fn checkout(
-        delta: Vec<(Resource, Vec<Diff>)>,
-        destination: Hash,
+        deltas: Vec<Delta>,
+        destination: (Scope, Hash),
         observation: &mut Observation
     ) {
-        
+        // Update the shard to match the upcoming deltas
+        let shard = observation.shards_mut().get_mut(&destination.0).expect("Shard doesn't exist");
+        *shard.head_mut() = destination.1;
+
+        // Decide whether this writes to a buffer or directly to the system
+        for delta in deltas {
+            
+        }
     }
     
     pub fn close(key: BufferKey, observation: &mut Observation) {
@@ -22,7 +31,7 @@ impl Transformation {
     }
 
     pub fn edit(
-        delta: Vec<(Resource, Vec<Diff>)>,
+        deltas: Vec<Delta>,
         observation: &mut Observation
     ) {
         
@@ -52,11 +61,19 @@ impl Transformation {
     }
 
     pub fn reset(
-        delta: Vec<(Resource, Vec<Diff>)>,
-        destination: Hash,
+        deltas: Vec<Delta>,
+        destination: (Scope, Hash),
         observation: &mut Observation
     ) {
-        
+        // Update the shard to match the upcoming deltas
+        let shard = observation.shards_mut().get_mut(&destination.0).expect("Shard doesn't exist");
+        *shard.head_mut() = destination.1;
+        truncate(&destination.1, shard);
+
+        // Decide whether this writes to a buffer or directly to the system
+        for delta in deltas {
+            
+        }
     }
 
     pub fn save(
