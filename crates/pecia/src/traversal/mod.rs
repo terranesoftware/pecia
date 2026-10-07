@@ -1,10 +1,9 @@
-pub mod delta;
 pub mod direction;
 pub mod helpers;
 
 use blake3::Hash;
 
-use crate::{observation::{Observation, scope::Scope}, traversal::{delta::Delta, direction::Direction, helpers::{change, create}}};
+use crate::{delta::Delta, observation::{Observation, scope::Scope}, traversal::{direction::Direction, helpers::{change, create}}};
 
 /// The entity that contribute to the navigation of text.
 pub struct Traversal;

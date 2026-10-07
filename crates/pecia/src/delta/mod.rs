@@ -1,6 +1,6 @@
-use crate::{observation::resource::Resource, traversal::delta::diff::Diff};
-
 pub mod diff;
+
+use crate::{delta::diff::Diff, observation::resource::Resource};
 
 pub struct Delta {
     diffs: Vec<Diff>,
@@ -8,7 +8,7 @@ pub struct Delta {
 }
 
 impl Delta {
-    pub(crate) fn new(
+    pub fn new(
         diffs: Vec<Diff>,
         resource: Resource
     ) -> Self {

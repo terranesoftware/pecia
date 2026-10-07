@@ -1,6 +1,6 @@
 use std::{iter::Peekable, range::Range};
 
-use crate::{observation::shard::change::edit::Edit, traversal::delta::diff::Diff};
+use crate::{delta::diff::Diff, observation::shard::change::edit::Edit};
 
 pub(super) fn apply<'a>(
     edit: &Edit,

@@ -1,7 +1,7 @@
 mod apply;
 mod insert;
 
-use crate::{observation::{buffers::buffer::region::Region, shard::change::edit::Edit}, traversal::{delta::{Delta, diff::Diff}, helpers::create::{apply::apply, insert::insert}}};
+use crate::{delta::{Delta, diff::Diff}, observation::{buffers::buffer::region::Region, shard::change::edit::Edit}, traversal::helpers::create::{apply::apply, insert::insert}};
 
 pub fn create(
     deltas: &mut Vec<Delta>,

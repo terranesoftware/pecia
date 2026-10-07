@@ -1,5 +1,4 @@
 pub mod encoding;
-pub mod operations;
 pub mod region;
 
 use buffers::Buffer as BufferImpl;
