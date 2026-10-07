@@ -1,7 +1,7 @@
 mod close;
 mod edit;
 mod open;
-mod persist;
+mod point;
 mod save;
 mod squash;
 mod truncate;
