@@ -1,5 +1,4 @@
 pub mod buffer;
-pub mod operations;
 
 use slotmap::{SlotMap, new_key_type};
 

@@ -1,12 +1,14 @@
-pub mod kind;
+pub mod implementation;
 pub mod operations;
 
+use crate::implementation::vector::Vector;
+
 pub enum Buffer {
-    Placeholder
+    Vector(Vector)
 }
 
 impl Buffer {
-    pub fn new() -> Self {
-        Self::Placeholder
+    pub fn vector() -> Self {
+        Self::Vector(Vector {  })
     }
 }

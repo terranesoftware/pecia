@@ -5,6 +5,6 @@ impl Transformation {
         key: BufferKey,
         observation: &mut Observation
     ) {
-        observation.buffers_mut().close(key);
+        
     }
 }
