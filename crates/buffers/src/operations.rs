@@ -20,6 +20,16 @@ impl Buffer {
     }
     
     pub fn len(&self) -> usize {
-        0
+        match self {
+            Buffer::Vector(vector) => vector.len()
+        }
+    }
+
+    pub fn read(&self,
+        range: Range<usize>
+    ) -> &[u8] {
+        match self {
+            Buffer::Vector(vector) => vector.read(range)
+        }
     }
 }

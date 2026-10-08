@@ -3,7 +3,7 @@ use std::range::Range;
 pub struct Vector(Vec<u8>);
 
 impl Vector {
-    pub fn new() -> Self {
+    pub(crate) fn new() -> Self {
         Self(Vec::new())
     }
     
@@ -17,5 +17,16 @@ impl Vector {
         replacement: &[u8]
     ) {
         
+    }
+
+    pub(crate) fn len(&self) -> usize {
+        self.0.len()
+    }
+
+    pub fn read(
+        &self,
+        range: Range<usize>
+    ) -> &[u8] {
+        &self.0[range]
     }
 }
