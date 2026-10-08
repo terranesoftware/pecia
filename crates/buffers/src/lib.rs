@@ -9,7 +9,7 @@ pub enum Buffer {
 
 impl Buffer {
     pub fn vector() -> Self {
-        Self::Vector(Vector {  })
+        Self::Vector(Vector::new())
     }
 }
 

@@ -3,6 +3,12 @@ use std::range::Range;
 use crate::Buffer;
 
 impl Buffer {
+    pub fn clear(&mut self) {
+        match self {
+            Buffer::Vector(vector) => vector.clear()
+        }
+    }
+    
     pub fn edit(
         &mut self,
         range: Range<usize>,
