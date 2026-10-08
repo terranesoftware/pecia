@@ -31,11 +31,15 @@ impl Buffer {
         self.encoding
     }
 
+    pub(crate) fn encoding_mut(&mut self) -> &mut Encoding {
+        &mut self.encoding
+    }
+
     pub fn implementation(&self) -> &BufferImpl {
         &self.implementation
     }
     
-    pub fn implementation_mut(&mut self) -> &mut BufferImpl {
+    pub(crate) fn implementation_mut(&mut self) -> &mut BufferImpl {
         &mut self.implementation
     }
 
@@ -43,7 +47,7 @@ impl Buffer {
         self.region
     }
 
-    pub fn region_mut(&mut self) -> &mut Region {
+    pub(crate) fn region_mut(&mut self) -> &mut Region {
         &mut self.region
     }
 
@@ -51,7 +55,7 @@ impl Buffer {
         &self.resource
     }
 
-    pub fn resource_mut(&mut self) -> &mut Resource {
+    pub(crate) fn resource_mut(&mut self) -> &mut Resource {
         &mut self.resource
     }
 }
