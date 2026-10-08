@@ -7,8 +7,9 @@ impl Transformation {
         observation: &mut Observation,
         resource: Resource
     ) {
-        let buffer = &mut observation.buffers_mut().map_mut().get_mut(key).expect("Buffer has already been closed").1;
+        let buffer = &mut observation.buffers_mut().map_mut().get_mut(key).expect("Buffer has already been closed");
+        assert!(buffer.0 == true, "Buffer has already been closed");
         
-        *buffer.resource_mut() = resource;
+        *buffer.1.resource_mut() = resource;
     }
 }

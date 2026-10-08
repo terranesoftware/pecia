@@ -14,6 +14,7 @@ impl Transformation {
         }
         else {
             let buffer = buffers.map_mut().get_mut(key).expect("Buffer has already been closed");
+            assert!(buffer.0 == true, "Buffer has already been closed");
             
             // Clear the buffer, mark it out of use, and then increment the counter
             buffer.1.implementation_mut().clear();

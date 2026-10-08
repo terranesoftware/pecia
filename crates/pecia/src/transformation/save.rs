@@ -6,6 +6,7 @@ impl Transformation {
         observation: &mut Observation
     ) {
         let buffer = observation.buffers().map().get(key).expect("Buffer has already been closed");
+        assert!(buffer.0 == true, "Buffer has already been closed");
         // Need some type of save operation
     }
 }
