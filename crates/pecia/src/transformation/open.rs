@@ -10,11 +10,27 @@ impl Transformation {
         region: Region,
         resource: Resource
     ) -> BufferKey {
+        let buffers = observation.buffers().map();
+        buffers.iter().find(|buffer| {
+            buffer.1.0 == false
+            &&
+            buffer.1.1.encoding() == encoding
+            &&
+            // Have to do a match here
+            // buffer.1.1.implementation()
+            true
+            &&
+            // Have to do a containment check here
+            buffer.1.1.region() == region
+            &&
+            buffer.1.1.resource() == &resource
+        });
+        
         // Instead of creating a new one, would always try to search for a free one first
         let buffer = match implementation {
             Implementation::Vector => Buffer::new(encoding, BufferImpl::vector(), region, resource)
         };
         
-        observation.buffers_mut().map_mut().insert(buffer)
+        observation.buffers_mut().map_mut().insert((true, buffer))
     }
 }

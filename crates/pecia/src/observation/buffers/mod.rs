@@ -8,7 +8,7 @@ new_key_type! { pub struct BufferKey; }
 
 pub struct Buffers {
     current: usize,
-    map: SlotMap<BufferKey, Buffer>,
+    map: SlotMap<BufferKey, (bool, Buffer)>,
     max: usize
 }
 
@@ -26,15 +26,19 @@ impl Buffers {
         self.current
     }
 
+    pub(crate) fn current_mut(&mut self) -> &mut usize {
+        &mut self.current
+    }
+
     pub fn max(&self) -> usize {
         self.max
     }
 
-    pub fn map(&self) -> &SlotMap<BufferKey, Buffer> {
+    pub fn map(&self) -> &SlotMap<BufferKey, (bool, Buffer)> {
         &self.map
     }
 
-    pub fn map_mut(&mut self) -> &mut SlotMap<BufferKey, Buffer> {
+    pub fn map_mut(&mut self) -> &mut SlotMap<BufferKey, (bool, Buffer)> {
         &mut self.map
     }
 }

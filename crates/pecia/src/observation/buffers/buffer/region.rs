@@ -1,6 +1,6 @@
 use std::range::Range;
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq)]
 pub struct Region(Range<usize>);
 
 impl Region {

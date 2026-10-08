@@ -10,7 +10,7 @@ impl Transformation {
         replacement: &[u8]
     ) {
         // Get buffer
-        let buffer = observation.buffers_mut().map_mut().get_mut(buffer).expect("Buffer has already been closed");
+        let buffer = &mut observation.buffers_mut().map_mut().get_mut(buffer).expect("Buffer has already been closed").1;
         
         // Make sure target region is within the buffer
         assert!(
