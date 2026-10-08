@@ -2,7 +2,6 @@ mod close;
 mod edit;
 mod open;
 mod point;
-mod save;
 mod truncate;
 pub use truncate::Relation;
 
