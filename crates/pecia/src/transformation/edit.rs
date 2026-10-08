@@ -3,6 +3,7 @@ use std::range::Range;
 use crate::{observation::{Observation, buffers::{BufferKey, buffer::region::Region}}, transformation::Transformation};
 
 impl Transformation {
+    /// Modifies the payload of a `Buffer`.
     pub fn edit(
         buffer: BufferKey,
         observation: &mut Observation,

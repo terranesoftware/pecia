@@ -1,6 +1,7 @@
 use crate::{observation::{Observation, buffers::BufferKey, Resource}, transformation::Transformation};
 
 impl Transformation {
+    /// Targets the buffer at the specified `Resource`.
     pub fn point(
         key: BufferKey,
         observation: &mut Observation,

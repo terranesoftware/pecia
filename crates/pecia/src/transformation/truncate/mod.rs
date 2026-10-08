@@ -7,6 +7,8 @@ use blake3::Hash;
 use crate::{observation::{Observation, Scope}, transformation::{Transformation, truncate::helpers::{ancestors::ancestors, descendants::descendants}}};
 
 impl Transformation {
+    // Might change this doc comment
+    /// Modifies the shard's change tree.
     pub fn truncate(
         observation: &mut Observation,
         relation: Relation,
