@@ -1,22 +1,24 @@
 mod helpers;
 
-mod relativity;
-pub use relativity::Relativity;
-
+mod relation;
 use blake3::Hash;
+pub use relation::Relation;
 
-use crate::{observation::{Observation, scope::Scope}, transformation::{Transformation, truncate::helpers::{ancestors::ancestors, both::both, descendants::descendants}}};
+use crate::{observation::{Observation, scope::Scope}, transformation::{Transformation, truncate::helpers::{ancestors::ancestors, descendants::descendants}}};
 
 impl Transformation {
     pub fn truncate(
         observation: &mut Observation,
-        target: (&Scope, &Hash),
-        relativity: Relativity
+        relation: Relation,
+        target: (&Scope, &Hash)
     ) {
-        match relativity {
-            Relativity::Ancestors => ancestors(observation, target),
-            Relativity::Both => both(observation, target),
-            Relativity::Descendants => descendants(observation, target)
+        match relation {
+            Relation::All => {
+                ancestors(observation, target);
+                descendants(observation, target);
+            },
+            Relation::Ancestors => ancestors(observation, target),
+            Relation::Descendants => descendants(observation, target)
         }
     }
 }

@@ -1,5 +1,5 @@
-pub enum Relativity {
+pub enum Relation {
+    All,
     Ancestors,
-    Both,
     Descendants
 }
