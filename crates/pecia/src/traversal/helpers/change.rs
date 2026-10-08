@@ -1,6 +1,6 @@
 use blake3::Hash;
 
-use crate::{observation::{Observation, scope::Scope, shard::change::Change}, traversal::direction::Direction};
+use crate::{observation::{Observation, Scope, shard::change::Change}, traversal::direction::Direction};
 
 pub(crate) fn change(
     destination: (Scope, Hash),

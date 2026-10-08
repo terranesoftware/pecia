@@ -1,6 +1,6 @@
 pub mod diff;
 
-use crate::{delta::diff::Diff, observation::resource::Resource};
+use crate::{delta::diff::Diff, observation::Resource};
 
 pub struct Delta {
     diffs: Vec<Diff>,

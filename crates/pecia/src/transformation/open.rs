@@ -1,6 +1,6 @@
 use buffers::{Buffer as BufferImpl, implementation::Implementation};
 
-use crate::{observation::{Observation, buffers::{BufferKey, buffer::{Buffer, encoding::Encoding, region::Region}}, resource::Resource}, transformation::Transformation};
+use crate::{observation::{Observation, buffers::{BufferKey, buffer::{Buffer, encoding::Encoding, region::Region}}, Resource}, transformation::Transformation};
 
 impl Transformation {
     pub fn open(

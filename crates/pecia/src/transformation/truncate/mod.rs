@@ -1,10 +1,10 @@
 mod helpers;
-
 mod relation;
-use blake3::Hash;
 pub use relation::Relation;
 
-use crate::{observation::{Observation, scope::Scope}, transformation::{Transformation, truncate::helpers::{ancestors::ancestors, descendants::descendants}}};
+use blake3::Hash;
+
+use crate::{observation::{Observation, Scope}, transformation::{Transformation, truncate::helpers::{ancestors::ancestors, descendants::descendants}}};
 
 impl Transformation {
     pub fn truncate(

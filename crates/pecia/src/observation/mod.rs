@@ -1,11 +1,17 @@
 pub mod buffers;
-pub mod resource;
-pub mod scope;
+pub use buffers::{BufferKey, Buffers};
+
+mod resource;
+pub use resource::Resource;
+
+mod scope;
+pub use scope::Scope;
+
 pub mod shard;
 
 use indexmap::IndexMap;
 
-use crate::observation::{buffers::Buffers, scope::Scope, shard::Shard};
+use crate::observation::shard::Shard;
 
 /// Entities that contributes to the inspection of text.
 pub struct Observation {

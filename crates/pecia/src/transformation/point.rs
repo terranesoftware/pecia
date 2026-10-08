@@ -1,4 +1,4 @@
-use crate::{observation::{Observation, buffers::BufferKey, resource::Resource}, transformation::Transformation};
+use crate::{observation::{Observation, buffers::BufferKey, Resource}, transformation::Transformation};
 
 impl Transformation {
     pub fn point(

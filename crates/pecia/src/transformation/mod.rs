@@ -4,6 +4,7 @@ mod open;
 mod point;
 mod save;
 mod truncate;
+pub use truncate::Relation;
 
 /// The entity that contributes to the manipulation of text.
 #[derive(Clone, Copy)]

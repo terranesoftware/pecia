@@ -1,6 +1,6 @@
 use blake3::Hash;
 
-use crate::observation::{Observation, scope::Scope, shard::Shard};
+use crate::observation::{Observation, Scope, shard::Shard};
 
 // Recursively remove al of the parent's descendants
 pub(crate) fn descendants(
