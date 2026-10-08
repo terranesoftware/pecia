@@ -6,6 +6,7 @@ use blake3::Hash;
 use crate::{delta::Delta, observation::{Observation, scope::Scope}, traversal::{direction::Direction, helpers::{change, create}}};
 
 /// The entity that contribute to the navigation of text.
+#[derive(Clone, Copy)]
 pub struct Traversal;
 
 impl Traversal {
