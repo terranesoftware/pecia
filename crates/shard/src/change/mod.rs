@@ -1,9 +1,8 @@
-pub mod edit;
+mod edit;
+pub use edit::Edit;
 
 use blake3::Hash;
 use time::Timestamp;
-
-use crate::change::edit::Edit;
 
 pub struct Change {
     edits: Vec<Edit>,
