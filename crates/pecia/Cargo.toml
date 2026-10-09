@@ -6,7 +6,12 @@ license = "Apache-2.0"
 
 [dependencies]
 indexmap = "2.14.2"
-pecia-buffers = { version = "0.1.0", path = "../buffers" }
-pecia-shard = { version = "0.1.0", path = "../shard" }
+pecia-buffers = { version = "0.1.0", path = "../buffers", optional = true }
+pecia-shard = { version = "0.1.0", path = "../shard", optional = true }
 slotmap = "1.1.1"
 time = "0.3.55"
+
+[features]
+default = ["buffers", "shard"]
+buffers = ["dep:pecia-buffers"]
+shard = ["dep:pecia-shard"]
