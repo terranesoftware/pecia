@@ -23,6 +23,10 @@ impl Resource {
         Resource(ResourceKind::File(path))
     }
 
+    pub fn kind(&self) -> &ResourceKind {
+        &self.0
+    }
+
     pub fn memory(id: usize) -> Resource {
         Resource(ResourceKind::Memory(id))
     }
