@@ -3,7 +3,7 @@ pub mod edit;
 use blake3::Hash;
 use time::Timestamp;
 
-use crate::observation::shard::change::edit::Edit;
+use crate::change::edit::Edit;
 
 pub struct Change {
     edits: Vec<Edit>,

@@ -1,10 +1,7 @@
-use crate::observation::resource::Resource;
-
 pub struct Edit {
     at: usize,
     replaced: Vec<u8>,
     replacement: Vec<u8>,
-    resource: Resource
 }
 
 impl Edit {
@@ -12,13 +9,11 @@ impl Edit {
         at: usize,
         replaced: Vec<u8>,
         replacement: Vec<u8>,
-        resource: Resource
     ) -> Self {
         Self {
             at,
             replaced,
             replacement,
-            resource
         }
     }
     
@@ -32,9 +27,5 @@ impl Edit {
 
     pub fn replacement(&self) -> &[u8] {
         &self.replacement
-    }
-
-    pub fn resource(&self) -> &Resource {
-        &self.resource
     }
 }

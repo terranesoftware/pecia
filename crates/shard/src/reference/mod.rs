@@ -2,7 +2,7 @@ pub mod kind;
 
 use blake3::Hash;
 
-use crate::observation::shard::reference::kind::ReferenceKind;
+use crate::reference::kind::ReferenceKind;
 
 /// A label given to a `Change`.
 pub struct Reference {
