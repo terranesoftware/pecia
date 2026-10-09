@@ -1,6 +1,7 @@
 mod close;
 mod edit;
 mod open;
+mod persist;
 mod point;
 mod truncate;
 pub use truncate::Relation;
