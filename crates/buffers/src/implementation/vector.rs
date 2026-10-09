@@ -16,7 +16,7 @@ impl Vector {
         range: Range<usize>,
         replacement: &[u8]
     ) {
-        
+        self.0.splice(range, replacement.iter().copied());
     }
 
     pub(crate) fn len(&self) -> usize {
