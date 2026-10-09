@@ -23,7 +23,7 @@ impl Vector {
         self.0.len()
     }
 
-    pub fn read(
+    pub(crate) fn read(
         &self,
         range: Range<usize>
     ) -> &[u8] {

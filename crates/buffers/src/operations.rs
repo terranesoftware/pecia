@@ -3,12 +3,14 @@ use std::range::Range;
 use crate::Buffer;
 
 impl Buffer {
+    /// Clears the buffer.
     pub fn clear(&mut self) {
         match self {
             Buffer::Vector(vector) => vector.clear()
         }
     }
     
+    /// Applies an edit to a buffer.
     pub fn edit(
         &mut self,
         range: Range<usize>,
@@ -19,13 +21,16 @@ impl Buffer {
         }
     }
     
+    /// Returns the current length of a buffer.
     pub fn len(&self) -> usize {
         match self {
             Buffer::Vector(vector) => vector.len()
         }
     }
 
-    pub fn read(&self,
+    /// Reads the contents of a buffer.
+    pub fn read(
+        &self,
         range: Range<usize>
     ) -> &[u8] {
         match self {
