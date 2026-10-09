@@ -5,7 +5,8 @@ edition = "2024"
 license = "Apache-2.0"
 
 [dependencies]
-buffers = { version = "0.1.0", path = "../buffers" }
 indexmap = "2.14.2"
+pecia-buffers = { version = "0.1.0", path = "../buffers" }
+pecia-shard = { version = "0.1.0", path = "../shard" }
 slotmap = "1.1.1"
 time = "0.3.55"

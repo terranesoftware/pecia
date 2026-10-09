@@ -22,10 +22,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "buffers"
-version = "0.1.0"
-
-[[package]]
 name = "cc"
 version = "1.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -106,9 +102,23 @@ checksum = "521739c6d2bac4aa25192232afe6841231376b2b26d4d9fae5ecf8ca5772e441"
 name = "pecia"
 version = "0.1.0"
 dependencies = [
- "buffers",
  "indexmap",
+ "pecia-buffers",
+ "pecia-shard",
  "slotmap",
+ "time",
+]
+
+[[package]]
+name = "pecia-buffers"
+version = "0.1.0"
+
+[[package]]
+name = "pecia-shard"
+version = "0.1.0"
+dependencies = [
+ "blake3",
+ "indexmap",
  "time",
 ]
 
@@ -154,15 +164,6 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn",
-]
-
-[[package]]
-name = "shard"
-version = "0.1.0"
-dependencies = [
- "blake3",
- "indexmap",
- "time",
 ]
 
 [[package]]
