@@ -1,27 +1,29 @@
+use std::path::PathBuf;
+
 use indexmap::map::MutableKeys;
 
-use crate::{Observation, Transformation, observation::{Resource, Scope}};
+use crate::{Observation, Transformation, observation::{Resource, Scope, resource::ResourceKind, scope::ScopeKind}};
 
 impl Transformation {
     pub fn persist(
-        directory: Option<Resource>,
+        directory: Option<PathBuf>,
         observation: &mut Observation,
         shard: &Scope
     ) {
         let (_, scope, _shard) = observation.shards_mut().get_full_mut2(shard).expect("Shard doesn't exist");
         
-        if let Some(directory) = directory {
-            *scope = Scope::Directory(directory);
+        if let Some(path) = directory {
+            *scope = Scope::directory(Resource::directory(path));
         }
         
-        match scope {
-            Scope::Directory(resource) => match resource {
-                Resource::Directory(_path) => {
+        match scope.kind() {
+            ScopeKind::Directory(resource) => match resource.kind() {
+                ResourceKind::Directory(_path) => {
                     
                 }
                 _ => unreachable!()
             }
-            Scope::Ephemeral(_) => panic!("Cannot persist an ephemeral shard")
+            ScopeKind::Ephemeral(_) => panic!("Cannot persist an ephemeral shard")
         }
 
         todo!()
