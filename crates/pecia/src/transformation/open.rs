@@ -5,9 +5,9 @@ use crate::{observation::{Observation, buffers::{BufferKey, buffer::{Buffer, enc
 impl Transformation {
     /// Opens a buffer with the specified arguments.
     pub fn open(
-        observation: &mut Observation,
         encoding: Encoding,
         implementation: Implementation,
+        observation: &mut Observation,
         region: Region,
         resource: Resource
     ) -> BufferKey {
