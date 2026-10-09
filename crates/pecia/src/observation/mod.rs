@@ -1,10 +1,10 @@
 pub mod buffers;
 pub use buffers::{BufferKey, Buffers};
 
-mod resource;
+pub mod resource;
 pub use resource::Resource;
 
-mod scope;
+pub mod scope;
 pub use scope::Scope;
 
 pub mod shard;
