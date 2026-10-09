@@ -1,15 +1,6 @@
 use pecia::{Observation, Transformation, observation::{BufferKey, buffers::buffer::region::Region}};
 
-use crate::observation;
-
-#[test]
-fn test_edit() {
-    let mut observation = observation();
-    
-    // edit(&mut observation);
-}
-
-fn edit(
+pub(crate) fn edit(
     buffer: BufferKey,
     observation: &mut Observation,
     region: Region,
