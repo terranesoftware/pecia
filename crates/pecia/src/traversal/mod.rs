@@ -12,7 +12,7 @@ pub struct Traversal;
 impl Traversal {
     pub fn route(
         deltas: &mut Vec<Delta>,
-        destination: (Scope, Hash),
+        destination: (&Scope, &Hash),
         direction: Direction,
         observation: &Observation
     ) {
