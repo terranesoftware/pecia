@@ -38,7 +38,7 @@ impl Shard {
                 name
             };
 
-            self.references.insert(hash, reference);
+            self.references.insert(reference, hash);
         };
     }
 }

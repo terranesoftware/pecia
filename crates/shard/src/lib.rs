@@ -15,7 +15,7 @@ pub struct Shard {
     head: Hash,
     changes: HashMap<Hash, Change>,
     children: HashMap<Hash, Vec<Hash>>,
-    references: HashMap<Hash, Reference>
+    references: HashMap<Reference, Hash>
 }
 
 impl Shard {

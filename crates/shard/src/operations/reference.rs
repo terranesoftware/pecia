@@ -17,6 +17,6 @@ impl Shard {
         };
 
         // Add it to the map
-        self.references.insert(change, reference);
+        self.references.insert(reference, change);
     }
 }
