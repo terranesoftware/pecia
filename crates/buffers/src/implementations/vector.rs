@@ -1,6 +1,6 @@
-use std::{ops::{Bound, RangeBounds}, range::Range};
+use std::ops::RangeBounds;
 
-use crate::BufferError;
+use crate::{BufferError, implementations::normalize};
 
 pub struct Vector(Vec<u8>);
 
@@ -13,11 +13,13 @@ impl Vector {
         self.0.clear();
     }
     
-    pub(crate) fn edit(
+    pub(crate) fn edit<R: RangeBounds<usize>>(
         &mut self,
-        range: Range<usize>,
+        range: R,
         replacement: &[u8]
     ) -> Result<(), BufferError> {
+        let range = normalize(self.len(), range)?;
+        
         if range.start > range.end {
             return Err(BufferError::ReversedBounds);
         }
@@ -38,25 +40,15 @@ impl Vector {
         &self,
         range: R
     ) -> Result<&[u8], BufferError> {
-        let start = match range.start_bound() {
-            Bound::Excluded(bound) => bound.checked_add(1).ok_or(BufferError::OutOfBounds)?,
-            Bound::Included(bound) => *bound,
-            Bound::Unbounded => 0
-        };
-
-        let end = match range.end_bound() {
-            Bound::Excluded(bound) => *bound,
-            Bound::Included(bound) => bound.checked_add(1).ok_or(BufferError::OutOfBounds)?,
-            Bound::Unbounded => self.len()
-        };
+        let range = normalize(self.len(), range)?;
         
-        if start > end {
+        if range.start > range.end {
             return Err(BufferError::ReversedBounds);
         }
-        else if end > self.len() {
+        else if range.end > self.len() {
             return Err(BufferError::OutOfBounds);
         }
         
-        Ok(&self.0[start..end])
+        Ok(&self.0[range])
     }
 }

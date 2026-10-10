@@ -1,4 +1,4 @@
-use std::{ops::RangeBounds, range::Range};
+use std::ops::RangeBounds;
 
 use crate::{Buffer, BufferError};
 
@@ -11,9 +11,9 @@ impl Buffer {
     }
     
     /// Applies an edit to a buffer.
-    pub fn edit(
+    pub fn edit<R: RangeBounds<usize>>(
         &mut self,
-        range: Range<usize>,
+        range: R,
         replacement: &[u8]
     ) -> Result<(), BufferError> {
         match self {
