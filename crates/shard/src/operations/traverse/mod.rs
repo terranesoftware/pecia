@@ -28,6 +28,9 @@ impl Shard {
         // TODO: Coalesce diffs within each resource
         // Deferred due to it being an optimization, not a necessity
 
+        // Update the head
+        self.head = *destination;
+
         Ok(())
     }
 }
