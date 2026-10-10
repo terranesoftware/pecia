@@ -1,5 +1,5 @@
 /// The kinds of possible referents.
-#[derive(Clone)]
+#[derive(Clone, Copy)]
 pub enum ReferenceKind {
     Branch,
     Change
