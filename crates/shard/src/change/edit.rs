@@ -1,5 +1,7 @@
+use serde::Serialize;
+
 /// A modification made to text.
-#[derive(Clone)]
+#[derive(Clone, Serialize)]
 pub struct Edit {
     pub at: usize,
     pub replaced: Vec<u8>,

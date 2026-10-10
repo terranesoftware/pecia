@@ -1,6 +1,8 @@
 pub mod change;
 pub use change::Change;
 
+mod operations;
+
 pub mod reference;
 pub use reference::Reference;
 
