@@ -1,5 +1,7 @@
 use std::range::Range;
 
+use crate::BufferError;
+
 pub struct Vector(Vec<u8>);
 
 impl Vector {
@@ -15,8 +17,17 @@ impl Vector {
         &mut self,
         range: Range<usize>,
         replacement: &[u8]
-    ) {
+    ) -> Result<(), BufferError> {
+        if range.start > range.end {
+            return Err(BufferError::ReversedBounds);
+        }
+        else if range.end > self.len() {
+            return Err(BufferError::OutOfBounds);
+        }
+        
         self.0.splice(range, replacement.iter().copied());
+
+        Ok(())
     }
 
     pub(crate) fn len(&self) -> usize {
@@ -26,7 +37,14 @@ impl Vector {
     pub(crate) fn read(
         &self,
         range: Range<usize>
-    ) -> &[u8] {
-        &self.0[range]
+    ) -> Result<&[u8], BufferError> {
+        if range.start > range.end {
+            return Err(BufferError::ReversedBounds);
+        }
+        else if range.end > self.len() {
+            return Err(BufferError::OutOfBounds);
+        }
+        
+        Ok(&self.0[range])
     }
 }

@@ -1,3 +1,6 @@
+mod error;
+pub use error::BufferError;
+
 mod implementations;
 pub use implementations::Vector;
 

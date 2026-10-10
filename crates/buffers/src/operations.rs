@@ -1,6 +1,6 @@
 use std::range::Range;
 
-use crate::Buffer;
+use crate::{Buffer, BufferError};
 
 impl Buffer {
     /// Clears the buffer.
@@ -15,7 +15,7 @@ impl Buffer {
         &mut self,
         range: Range<usize>,
         replacement: &[u8]
-    ) {
+    ) -> Result<(), BufferError> {
         match self {
             Buffer::Vector(vector) => vector.edit(range, replacement)
         }
@@ -32,7 +32,7 @@ impl Buffer {
     pub fn read(
         &self,
         range: Range<usize>
-    ) -> &[u8] {
+    ) -> Result<&[u8], BufferError> {
         match self {
             Buffer::Vector(vector) => vector.read(range)
         }
