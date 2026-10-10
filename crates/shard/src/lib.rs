@@ -1,6 +1,9 @@
 pub mod change;
 pub use change::Change;
 
+mod error;
+pub use error::ShardError;
+
 mod operations;
 
 pub mod reference;
