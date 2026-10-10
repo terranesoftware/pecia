@@ -1,4 +1,4 @@
-use std::range::Range;
+use std::{ops::RangeBounds, range::Range};
 
 use crate::{Buffer, BufferError};
 
@@ -29,9 +29,9 @@ impl Buffer {
     }
 
     /// Reads the contents of a buffer.
-    pub fn read(
+    pub fn read<R: RangeBounds<usize>>(
         &self,
-        range: Range<usize>
+        range: R
     ) -> Result<&[u8], BufferError> {
         match self {
             Buffer::Vector(vector) => vector.read(range)

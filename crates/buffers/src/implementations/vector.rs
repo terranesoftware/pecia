@@ -1,4 +1,4 @@
-use std::range::Range;
+use std::{ops::{Bound, RangeBounds}, range::Range};
 
 use crate::BufferError;
 
@@ -34,17 +34,29 @@ impl Vector {
         self.0.len()
     }
 
-    pub(crate) fn read(
+    pub(crate) fn read<R: RangeBounds<usize>>(
         &self,
-        range: Range<usize>
+        range: R
     ) -> Result<&[u8], BufferError> {
-        if range.start > range.end {
+        let start = match range.start_bound() {
+            Bound::Excluded(bound) => bound.checked_add(1).ok_or(BufferError::OutOfBounds)?,
+            Bound::Included(bound) => *bound,
+            Bound::Unbounded => 0
+        };
+
+        let end = match range.end_bound() {
+            Bound::Excluded(bound) => *bound,
+            Bound::Included(bound) => bound.checked_add(1).ok_or(BufferError::OutOfBounds)?,
+            Bound::Unbounded => self.len()
+        };
+        
+        if start > end {
             return Err(BufferError::ReversedBounds);
         }
-        else if range.end > self.len() {
+        else if end > self.len() {
             return Err(BufferError::OutOfBounds);
         }
         
-        Ok(&self.0[range])
+        Ok(&self.0[start..end])
     }
 }
