@@ -7,15 +7,15 @@ pub mod reference;
 pub use reference::Reference;
 
 use blake3::Hash;
-use indexmap::IndexMap;
+use std::collections::HashMap;
 
 /// A fragment of a view's complete history.
 #[derive(Clone)]
 pub struct Shard {
     head: Hash,
-    changes: IndexMap<Hash, Change>,
-    children: IndexMap<Hash, Vec<Hash>>,
-    references: Vec<Reference>
+    changes: HashMap<Hash, Change>,
+    children: HashMap<Hash, Vec<Hash>>,
+    references: HashMap<Hash, Reference>
 }
 
 impl Shard {
@@ -23,9 +23,9 @@ impl Shard {
     pub fn new() -> Self {
         Self {
             head: Hash::from_bytes([0; 32]),
-            changes: IndexMap::new(),
-            children: IndexMap::new(),
-            references: Vec::new()
+            changes: HashMap::new(),
+            children: HashMap::new(),
+            references: HashMap::new()
         }
     }
 }

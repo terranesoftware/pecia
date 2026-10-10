@@ -5,6 +5,7 @@ use time::Timestamp;
 use crate::{Change, Reference, Shard, change::Edit, reference::ReferenceKind};
 
 impl Shard {
+    /// Adds a `Change` to the `Shard`.
     pub fn change(
         &mut self,
         edits: Vec<Edit>,
@@ -34,11 +35,10 @@ impl Shard {
         if let Some(name) = reference {
             let reference = Reference {
                 kind: ReferenceKind::Change,
-                name,
-                change: hash
+                name
             };
 
-            self.references.push(reference);
+            self.references.insert(hash, reference);
         };
     }
 }
