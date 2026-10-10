@@ -8,9 +8,22 @@ use blake3::Hash;
 use indexmap::IndexMap;
 
 /// A fragment of a view's complete history.
+#[derive(Clone)]
 pub struct Shard {
-    pub head: Hash,
-    pub changes: IndexMap<Hash, Change>,
-    pub children: IndexMap<Hash, Vec<Hash>>,
-    pub references: Vec<Reference>
+    head: Hash,
+    changes: IndexMap<Hash, Change>,
+    children: IndexMap<Hash, Vec<Hash>>,
+    references: Vec<Reference>
+}
+
+impl Shard {
+    /// Creates a new `Shard`.
+    pub fn new() -> Self {
+        Self {
+            head: Hash::from_bytes([0; 32]),
+            changes: IndexMap::new(),
+            children: IndexMap::new(),
+            references: Vec::new()
+        }
+    }
 }
