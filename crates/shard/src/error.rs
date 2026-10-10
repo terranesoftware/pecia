@@ -1,4 +1,5 @@
 pub enum ShardError {
     InvalidHash,
-    InvalidReference
+    InvalidReference,
+    NotARelative
 }
