@@ -1,4 +1,5 @@
 mod change;
 mod reference;
-mod relocate;
+pub mod relocate;
 pub mod traverse;
+pub mod truncate;

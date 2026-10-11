@@ -1,0 +1,28 @@
+mod helpers;
+
+mod relation;
+pub use relation::Relation;
+
+use blake3::Hash;
+
+use crate::{Shard, ShardError, operations::truncate::helpers::{ancestors::ancestors, descendants::descendants}};
+
+impl Shard {
+    /// Modifies the shard's change tree.
+    pub fn truncate(
+        &mut self,
+        relation: Relation,
+        target: &Hash
+    ) -> Result<(), ShardError> {
+        match relation {
+            Relation::All => {
+                ancestors(target, self)?;
+                descendants(target, self)?;
+
+                Ok(())
+            },
+            Relation::Ancestors => ancestors(target, self),
+            Relation::Descendants => descendants(target, self)
+        }
+    }
+}
