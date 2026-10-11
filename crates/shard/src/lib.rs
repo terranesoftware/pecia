@@ -18,6 +18,7 @@ pub struct Shard {
     head: Hash,
     changes: HashMap<Hash, Change>,
     children: HashMap<Hash, Vec<Hash>>,
+    parents: HashMap<Hash, Vec<Hash>>,
     references: HashMap<Reference, Hash>
 }
 
@@ -28,6 +29,7 @@ impl Shard {
             head: Hash::from_bytes([0; 32]),
             changes: HashMap::new(),
             children: HashMap::new(),
+            parents: HashMap::new(),
             references: HashMap::new()
         }
     }

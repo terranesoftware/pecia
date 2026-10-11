@@ -14,12 +14,14 @@ impl Shard {
         // Create the change
         let change = Change {
             edits,
-            parents: vec![self.head],
             timestamp: Timestamp::now()
         };
 
         // Hash it
         let hash = hash(&serialize(&change).unwrap());
+
+        // Add head as its parent
+        self.parents.insert(hash, vec![self.head]);
 
         // Add it as the previous head's child
         let children = self.children.get_mut(&self.head).unwrap();

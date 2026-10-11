@@ -13,7 +13,7 @@ pub(crate) fn change<'a>(
     // Get the head's relevant relatives and find the change associated with the destination
     let relatives = match direction {
         Direction::Newer => shard.children.get(&head).unwrap(),
-        Direction::Older => &shard.changes.get(&head).unwrap().parents
+        Direction::Older => &shard.parents.get(&head).unwrap()
     };
     if !relatives.contains(destination) {
         return Err(ShardError::NotARelative);
