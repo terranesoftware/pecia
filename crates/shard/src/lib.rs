@@ -4,7 +4,7 @@ pub use change::Change;
 mod error;
 pub use error::ShardError;
 
-mod operations;
+pub mod operations;
 
 pub mod reference;
 pub use reference::Reference;
@@ -32,5 +32,30 @@ impl Shard {
             parents: HashMap::new(),
             references: HashMap::new()
         }
+    }
+
+    /// Returns a copy of the contained head hash.
+    pub fn head(&self) -> Hash {
+        self.head
+    }
+
+    /// Returns a reference to the contained changes map.
+    pub fn changes(&self) -> &HashMap<Hash, Change> {
+        &self.changes
+    }
+
+    /// Returns a reference to the contained children map.
+    pub fn children(&self) -> &HashMap<Hash, Vec<Hash>> {
+        &self.children
+    }
+
+    /// Returns a reference to the contained parents map.
+    pub fn parents(&self) -> &HashMap<Hash, Vec<Hash>> {
+        &self.parents
+    }
+
+    /// Returns a reference to the contained references map.
+    pub fn references(&self) -> &HashMap<Reference, Hash> {
+        &self.references
     }
 }
