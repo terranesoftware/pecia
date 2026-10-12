@@ -8,7 +8,7 @@ use crate::{Shard, ShardError};
 impl Shard {
     pub fn relocate(
         &mut self,
-        destination: Vec<Hash>,
+        destination: &[Hash],
         operation: Operation,
         source: &Hash
     ) -> Result<(), ShardError> {
@@ -18,7 +18,7 @@ impl Shard {
         }
 
         // For every destination hash, push on the source as a child
-        for parent in &destination {
+        for parent in destination {
             self.children.get_mut(&parent).unwrap().push(*source);
         }
 
@@ -27,7 +27,7 @@ impl Shard {
             Operation::Copy => self.parents.get_mut(source).unwrap().extend(destination), // Just add all the destination hashes as new parents
             Operation::Cut => {
                 // Get the parents of this source as well as replacing it with its new parents
-                let parents = self.parents.insert(*source, destination).unwrap();
+                let parents = self.parents.insert(*source, destination.to_vec()).unwrap();
 
                 // For every parent, get its children and remove the source from it
                 for parent in parents {
