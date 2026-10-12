@@ -7,12 +7,12 @@ description = "Text, and only text."
 license = "Apache-2.0"
 repository = "https://github.com/terranesoftware/pecia"
 keywords = ["buffer", "editing", "history", "provenance", "text"]
-categories = ["data-structures", "text-processing", "text-manipulation"]
+categories = ["data-structures", "text-editors", "text-processing"]
 
 [dependencies]
 indexmap = "2.14.2"
-pecia-buffers = { version = "0.1.0", path = "../buffers", optional = true }
-pecia-shard = { version = "0.1.0", path = "../shard", optional = true }
+pecia-buffers = { version = "0.1.0", optional = true }
+pecia-shard = { version = "0.1.0", optional = true }
 slotmap = "1.1.1"
 time = "0.3.55"
 
