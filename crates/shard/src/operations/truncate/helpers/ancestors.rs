@@ -1,6 +1,6 @@
 use blake3::Hash;
 
-use crate::{Shard, ShardError};
+use crate::{Shard, ShardError, operations::truncate::helpers::descendants::descendants_internal};
 
 // Recursively remove all of the child's ancestors
 pub(crate) fn ancestors(
@@ -24,8 +24,9 @@ fn ancestors_internal(
     // Remove the parents for this ancestor
     let parents = shard.parents.remove(child).ok_or(ShardError::InvalidHash)?;
     
-    // Recursively remove all ancestors
+    // Recursively remove all ancestors (and descendants of those ancestors)
     for parent in &parents {
+        descendants_internal(parent, shard)?;
         ancestors_internal(parent, shard)?;
     }
 
