@@ -6,6 +6,7 @@ use blake3::Hash;
 use crate::{Shard, ShardError};
 
 impl Shard {
+    /// Applies an `Operation` to a `Change` (and to its descendants, transitively)
     pub fn relocate(
         &mut self,
         destination: &[Hash],
