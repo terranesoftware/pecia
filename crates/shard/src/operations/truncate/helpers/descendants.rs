@@ -17,7 +17,7 @@ pub(crate) fn descendants(
     Ok(())
 }
 
-fn descendants_internal(
+pub(super) fn descendants_internal(
     parent: &Hash,
     shard: &mut Shard
 ) -> Result<(), ShardError> {

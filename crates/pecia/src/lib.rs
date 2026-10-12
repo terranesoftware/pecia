@@ -33,9 +33,14 @@ pub mod buffers {
 pub use pecia_shard::Shard;
 #[cfg(feature = "shard")]
 pub mod shard {
-    pub use pecia_shard::{Change, Reference};
+    pub use pecia_shard::{Change, Reference, ShardError};
     pub mod change {
         pub use pecia_shard::change::Edit;
+    }
+    pub mod operations {
+        pub use pecia_shard::operations::relocate;
+        pub use pecia_shard::operations::traverse;
+        pub use pecia_shard::operations::truncate;
     }
     pub mod reference {
         pub use pecia_shard::reference::ReferenceKind;
