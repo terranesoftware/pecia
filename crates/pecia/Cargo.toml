@@ -2,7 +2,12 @@
 name = "pecia"
 version = "0.1.0"
 edition = "2024"
+readme.workspace = true
+description = "Text, and only text."
 license = "Apache-2.0"
+repository = "https://github.com/terranesoftware/pecia"
+keywords = ["buffer", "editing", "history", "provenance", "text"]
+categories = ["data-structures", "text-processing", "text-manipulation"]
 
 [dependencies]
 indexmap = "2.14.2"
