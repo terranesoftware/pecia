@@ -19,14 +19,15 @@ impl Shard {
         // Add the new change to the tree
         let key = self.changes.insert(change);
 
-        // Add head as its parent
-        self.parents.insert(key, vec![self.head]);
-
-        // Create its children Vec
+        // Create its parent and children entries
+        self.parents.insert(key, Vec::new());
         self.children.insert(key, Vec::new());
 
-        // Add it as the previous head's child
         if self.head != ShardKey::null() {
+            // Add head as its parent
+            self.parents.get_mut(key).unwrap().push(self.head);
+
+            // Add as the previous head's child
             let children = self.children.get_mut(self.head).unwrap();
             children.push(key);
         }
