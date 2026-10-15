@@ -1,6 +1,6 @@
 #[derive(Debug)]
 pub enum ShardError {
-    InvalidHash,
+    InvalidKey,
     InvalidReference,
     NotARelative
 }

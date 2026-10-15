@@ -10,7 +10,7 @@ impl Shard {
     ) -> Result<(), ShardError> {
         // Make sure the hash is valid
         if !self.changes.contains_key(change) {
-            return Err(ShardError::InvalidHash);
+            return Err(ShardError::InvalidKey);
         }
         
         // Create the reference

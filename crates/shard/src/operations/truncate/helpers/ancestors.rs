@@ -22,7 +22,7 @@ fn ancestors_internal(
     start: ShardKey
 ) -> Result<(), ShardError> {
     // Remove the parents for this ancestor
-    let parents = shard.parents.remove(child).ok_or(ShardError::InvalidHash)?;
+    let parents = shard.parents.remove(child).ok_or(ShardError::InvalidKey)?;
     
     // Recursively remove all ancestors (and descendants of those ancestors)
     for parent in parents {

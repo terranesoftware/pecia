@@ -13,7 +13,7 @@ impl Shard {
     ) -> Result<(), ShardError> {
         // Make sure hashes are valid
         if !self.changes.contains_key(source) || !destination.iter().all(|hash| self.changes.contains_key(*hash)) {
-            return Err(ShardError::InvalidHash);
+            return Err(ShardError::InvalidKey);
         }
 
         // For every destination hash, push on the source as a child

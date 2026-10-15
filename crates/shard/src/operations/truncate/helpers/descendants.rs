@@ -22,7 +22,7 @@ pub(super) fn descendants_internal(
     start: ShardKey
 ) -> Result<(), ShardError> {
     // Remove the children for this descendant
-    let children = shard.children.remove(parent).ok_or(ShardError::InvalidHash)?;
+    let children = shard.children.remove(parent).ok_or(ShardError::InvalidKey)?;
     
     // Recursively remove all descendants
     for child in children {
