@@ -8,7 +8,7 @@ fn reference() {
 
     // Create a change and reference it *after* creation
     shard.change(Vec::new(), None);
-    shard.reference(ReferenceKind::Change, "ReferenceTest".to_string(), shard.head);
+    shard.reference(ReferenceKind::Change, "ReferenceTest", shard.head);
 
     // Make sure the reference exists correctly
     assert_eq!(

@@ -8,7 +8,7 @@ impl Shard {
     pub fn reference(
         &mut self,
         kind: ReferenceKind,
-        name: String,
+        name: &str,
         change: ShardKey
     ) -> Result<(), ShardError> {
         // Make sure the key is valid
@@ -19,7 +19,7 @@ impl Shard {
         // Create the reference
         let reference = Reference {
             kind,
-            name
+            name: name.to_string()
         };
 
         // Add it to the map

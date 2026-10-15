@@ -24,17 +24,17 @@ fn init() -> (
     
     let mut shard = Shard::new();
     
-    shard.change(Vec::new(), Some("A".to_string()));
+    shard.change(Vec::new(), Some("A"));
     let a = shard.head();
     
-    shard.change(Vec::new(), Some("B".to_string()));
+    shard.change(Vec::new(), Some("B"));
     let b = shard.head();
     
     shard.traverse(&mut Vec::new(), a, Direction::Older).unwrap();
-    shard.change(Vec::new(), Some("C".to_string()));
+    shard.change(Vec::new(), Some("C"));
     let c = shard.head();
 
-    shard.change(Vec::new(), Some("D".to_string()));
+    shard.change(Vec::new(), Some("D"));
     let d = shard.head();
 
     (a, b, c, d, shard)
