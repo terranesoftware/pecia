@@ -1,3 +1,6 @@
+#[cfg(test)]
+mod tests;
+
 use slotmap::Key;
 use time::Timestamp;
 
@@ -8,7 +11,7 @@ impl Shard {
     pub fn change(
         &mut self,
         edits: Vec<Edit>,
-        reference: Option<String>
+        reference: Option<&str>
     ) {
         // Create the change
         let change = Change {
@@ -39,7 +42,7 @@ impl Shard {
         if let Some(name) = reference {
             let reference = Reference {
                 kind: ReferenceKind::Change,
-                name
+                name: name.to_string()
             };
 
             self.references.insert(reference, key);
