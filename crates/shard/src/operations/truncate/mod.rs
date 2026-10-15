@@ -26,3 +26,15 @@ impl Shard {
         }
     }
 }
+
+#[test]
+fn test_truncate() {
+    // Change tree:
+    //    A
+    //  /  \
+    // B    C
+    //  \  /
+    //   D
+    
+    let shard = Shard::new();
+}
