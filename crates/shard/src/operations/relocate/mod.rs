@@ -1,10 +1,14 @@
 mod operation;
 pub use operation::Operation;
 
+#[cfg(test)]
+mod tests;
+
 use crate::{Shard, ShardError, ShardKey};
 
 impl Shard {
     /// Applies an `Operation` to a `Change` (and to its descendants, transitively)
+    // TODO: This needs to detect cycles and error on one
     pub fn relocate(
         &mut self,
         destination: &[ShardKey],
