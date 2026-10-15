@@ -27,6 +27,8 @@ impl Shard {
 
 #[test]
 fn test_truncate() {
+    use std::collections::HashMap;
+    
     use crate::operations::{relocate::Operation, traverse::Direction};
     
     let mut shard = Shard::new();
@@ -59,9 +61,9 @@ fn test_truncate() {
     let mut shard1 = shard.clone();
     shard1.truncate(Relation::Descendants, a).unwrap();
     assert_eq!(
-        shard1.changes(),
-        &HashMap::from([
-            (a, shard.changes().get(a).unwrap().clone())
+        shard1.changes().iter().collect::<HashMap<_, _>>(),
+        HashMap::from([
+            (a, shard.changes().get(a).unwrap())
         ])
     );
     
