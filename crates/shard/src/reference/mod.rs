@@ -2,7 +2,7 @@ mod kind;
 pub use kind::ReferenceKind;
 
 /// A label given to a `Change`.
-#[derive(Clone, Eq, Hash, PartialEq)]
+#[derive(Clone, Debug, Eq, Hash, PartialEq)]
 pub struct Reference {
     pub(crate) kind: ReferenceKind,
     pub(crate) name: String

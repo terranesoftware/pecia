@@ -1,3 +1,6 @@
+#[cfg(test)]
+mod tests;
+
 use crate::{Reference, Shard, ShardError, ShardKey, reference::ReferenceKind};
 
 impl Shard {
@@ -8,7 +11,7 @@ impl Shard {
         name: String,
         change: ShardKey
     ) -> Result<(), ShardError> {
-        // Make sure the hash is valid
+        // Make sure the key is valid
         if !self.changes.contains_key(change) {
             return Err(ShardError::InvalidKey);
         }
