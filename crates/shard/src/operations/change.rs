@@ -1,6 +1,7 @@
+use slotmap::Key;
 use time::Timestamp;
 
-use crate::{Change, Reference, Shard, change::Edit, reference::ReferenceKind};
+use crate::{Change, Reference, Shard, ShardKey, change::Edit, reference::ReferenceKind};
 
 impl Shard {
     /// Adds a `Change` to the `Shard`.
@@ -21,9 +22,14 @@ impl Shard {
         // Add head as its parent
         self.parents.insert(key, vec![self.head]);
 
+        // Create its children Vec
+        self.children.insert(key, Vec::new());
+
         // Add it as the previous head's child
-        let children = self.children.get_mut(self.head).unwrap();
-        children.push(key);
+        if self.head != ShardKey::null() {
+            let children = self.children.get_mut(self.head).unwrap();
+            children.push(key);
+        }
 
         // Update the head
         self.head = key;
