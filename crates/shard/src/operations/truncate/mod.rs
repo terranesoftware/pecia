@@ -16,13 +16,13 @@ impl Shard {
     ) -> Result<(), ShardError> {
         match relation {
             Relation::All => {
-                ancestors(target, self)?;
-                descendants(target, self)?;
+                ancestors(target, self, target)?;
+                descendants(target, self, target)?;
 
                 Ok(())
             },
-            Relation::Ancestors => ancestors(target, self),
-            Relation::Descendants => descendants(target, self)
+            Relation::Ancestors => ancestors(target, self, target),
+            Relation::Descendants => descendants(target, self, target)
         }
     }
 }
