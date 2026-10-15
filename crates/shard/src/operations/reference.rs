@@ -1,6 +1,4 @@
-use blake3::Hash;
-
-use crate::{Reference, Shard, ShardError, reference::ReferenceKind};
+use crate::{Reference, Shard, ShardError, ShardKey, reference::ReferenceKind};
 
 impl Shard {
     /// Tags a `Change` with a `Reference`.
@@ -8,10 +6,10 @@ impl Shard {
         &mut self,
         kind: ReferenceKind,
         name: String,
-        change: Hash
+        change: ShardKey
     ) -> Result<(), ShardError> {
         // Make sure the hash is valid
-        if !self.changes.contains_key(&change) {
+        if !self.changes.contains_key(change) {
             return Err(ShardError::InvalidHash);
         }
         

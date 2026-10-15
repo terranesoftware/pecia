@@ -13,7 +13,6 @@ categories = ["data-structures", "text-editors", "text-processing"]
 indexmap = "2.14.2"
 pecia-buffers = { version = "0.1.0", optional = true }
 pecia-shard = { version = "0.1.0", optional = true }
-slotmap = "1.1.1"
 time = "0.3.55"
 
 [features]

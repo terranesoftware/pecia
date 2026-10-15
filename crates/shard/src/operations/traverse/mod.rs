@@ -6,15 +6,13 @@ pub use direction::Direction;
 
 mod helpers;
 
-use blake3::Hash;
-
-use crate::{Shard, ShardError, operations::traverse::helpers::{change, create}};
+use crate::{Shard, ShardError, ShardKey, operations::traverse::helpers::{change, create}};
 
 impl Shard {
     pub fn traverse(
         &mut self,
         deltas: &mut Vec<Delta>,
-        destination: &Hash,
+        destination: ShardKey,
         direction: Direction
     ) -> Result<(), ShardError> {
         // Get the destination change
@@ -29,7 +27,7 @@ impl Shard {
         // Deferred due to it being an optimization, not a necessity
 
         // Update the head
-        self.head = *destination;
+        self.head = destination;
 
         Ok(())
     }

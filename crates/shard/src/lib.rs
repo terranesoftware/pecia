@@ -9,53 +9,55 @@ pub mod operations;
 pub mod reference;
 pub use reference::Reference;
 
-use blake3::Hash;
+use slotmap::{Key, SecondaryMap, SlotMap, new_key_type};
 use std::collections::HashMap;
+
+new_key_type! { pub struct ShardKey; }
 
 /// A fragment of a view's complete history.
 #[derive(Clone)]
 pub struct Shard {
-    head: Hash,
-    changes: HashMap<Hash, Change>,
-    children: HashMap<Hash, Vec<Hash>>,
-    parents: HashMap<Hash, Vec<Hash>>,
-    references: HashMap<Reference, Hash>
+    head: ShardKey,
+    changes: SlotMap<ShardKey, Change>,
+    children: SecondaryMap<ShardKey, Vec<ShardKey>>,
+    parents: SecondaryMap<ShardKey, Vec<ShardKey>>,
+    references: HashMap<Reference, ShardKey>
 }
 
 impl Shard {
     /// Creates a new `Shard`.
     pub fn new() -> Self {
         Self {
-            head: Hash::from_bytes([0; 32]),
-            changes: HashMap::new(),
-            children: HashMap::new(),
-            parents: HashMap::new(),
+            head: ShardKey::null(),
+            changes: SlotMap::with_key(),
+            children: SecondaryMap::new(),
+            parents: SecondaryMap::new(),
             references: HashMap::new()
         }
     }
 
-    /// Returns a copy of the contained head hash.
-    pub fn head(&self) -> Hash {
+    /// Returns a copy of the contained head key.
+    pub fn head(&self) -> ShardKey {
         self.head
     }
 
     /// Returns a reference to the contained changes map.
-    pub fn changes(&self) -> &HashMap<Hash, Change> {
+    pub fn changes(&self) -> &SlotMap<ShardKey, Change> {
         &self.changes
     }
 
     /// Returns a reference to the contained children map.
-    pub fn children(&self) -> &HashMap<Hash, Vec<Hash>> {
+    pub fn children(&self) -> &SecondaryMap<ShardKey, Vec<ShardKey>> {
         &self.children
     }
 
     /// Returns a reference to the contained parents map.
-    pub fn parents(&self) -> &HashMap<Hash, Vec<Hash>> {
+    pub fn parents(&self) -> &SecondaryMap<ShardKey, Vec<ShardKey>> {
         &self.parents
     }
 
     /// Returns a reference to the contained references map.
-    pub fn references(&self) -> &HashMap<Reference, Hash> {
+    pub fn references(&self) -> &HashMap<Reference, ShardKey> {
         &self.references
     }
 }

@@ -145,7 +145,6 @@ dependencies = [
  "indexmap",
  "pecia-buffers 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "pecia-shard 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "slotmap",
  "time",
 ]
 
@@ -163,9 +162,7 @@ checksum = "5da786f0c63fe516f82023ebd09f11cbf81eaa4593fd34dccc5e7301c7794259"
 name = "pecia-shard"
 version = "0.1.0"
 dependencies = [
- "bitcode",
- "blake3",
- "serde",
+ "slotmap",
  "time",
 ]
 

@@ -1,9 +1,7 @@
-use blake3::Hash;
-
-use crate::{Change, Shard, ShardError, operations::traverse::Direction};
+use crate::{Change, Shard, ShardError, ShardKey, operations::traverse::Direction};
 
 pub(crate) fn change<'a>(
-    destination: &Hash,
+    destination: ShardKey,
     direction: Direction,
     shard: &'a mut Shard
 ) -> Result<&'a Change, ShardError> {
@@ -12,10 +10,10 @@ pub(crate) fn change<'a>(
     
     // Get the head's relevant relatives and find the change associated with the destination
     let relatives = match direction {
-        Direction::Newer => shard.children.get(&head).unwrap(),
-        Direction::Older => &shard.parents.get(&head).unwrap()
+        Direction::Newer => shard.children.get(head).unwrap(),
+        Direction::Older => &shard.parents.get(head).unwrap()
     };
-    if !relatives.contains(destination) {
+    if !relatives.contains(&destination) {
         return Err(ShardError::NotARelative);
     }
 
