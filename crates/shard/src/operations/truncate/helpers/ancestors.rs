@@ -1,39 +1,42 @@
-use crate::{Shard, ShardError, ShardKey, operations::truncate::helpers::descendants::descendants_internal};
+use crate::{Shard, ShardKey, operations::truncate::helpers::descendants::descendants_internal};
 
 // Recursively remove all of the child's ancestors
 pub(crate) fn ancestors(
     child: ShardKey,
-    shard: &mut Shard,
-    start: ShardKey
-) -> Result<(), ShardError> {
-    ancestors_internal(child, shard, start)?;
+    shard: &mut Shard
+) {
+    let mut removed = Vec::new();
+    ancestors_internal(child, &mut removed, shard);
 
     // If the head got truncated, set the head to the target
     if shard.changes.get(shard.head).is_none() {
         shard.head = child;
     }
-
-    Ok(())
 }
 
 fn ancestors_internal(
     child: ShardKey,
-    shard: &mut Shard,
-    start: ShardKey
-) -> Result<(), ShardError> {
+    removed: &mut Vec<ShardKey>,
+    shard: &mut Shard
+) {
+    // We've already removed this
+    if removed.contains(&child) {
+        return;
+    }
+    
+    // Add it to the list
+    removed.push(child);
+
     // Remove the parents for this ancestor
-    let parents = shard.parents.remove(child).ok_or(ShardError::InvalidKey)?;
+    let parents = shard.parents.remove(child).unwrap();
     
     // Recursively remove all ancestors (and descendants of those ancestors)
     for parent in parents {
-        descendants_internal(parent, shard, start)?;
-        ancestors_internal(parent, shard, start)?;
+        ancestors_internal(parent, removed, shard);
+        descendants_internal(parent, removed, shard);
     }
 
-    // Remove this ancestor
-    if child != start {
-        shard.changes.remove(child).unwrap();
-    }
-
-    Ok(())
+    // Remove this ancestor (from all maps)
+    shard.changes.remove(child).unwrap();
+    shard.children.remove(child).unwrap();
 }
