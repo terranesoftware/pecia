@@ -7,11 +7,6 @@ pub(crate) fn descendants(
 ) {
     let mut removed = Vec::new();
     descendants_internal(parent, &mut removed, shard);
-
-    // If the head got truncated, set the head to the target
-    if shard.changes.get(shard.head).is_none() {
-        shard.head = parent;
-    }
 }
 
 pub(super) fn descendants_internal(
