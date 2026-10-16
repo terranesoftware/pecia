@@ -2,6 +2,7 @@ mod helpers;
 
 mod relation;
 pub use relation::Relation;
+use slotmap::Key;
 
 #[cfg(test)]
 mod tests;
@@ -12,8 +13,8 @@ impl Shard {
     /// Modifies the shard's change tree.
     pub fn truncate(
         &mut self,
-        relation: Relation,
-        pivot: ShardKey
+        pivot: ShardKey,
+        relation: Relation
     ) -> Result<(), ShardError> {
         // Make sure the key hasn't already been removed
         self.changes.contains_key(pivot).ok_or(ShardError::InvalidKey)?;
@@ -25,6 +26,10 @@ impl Shard {
             },
             Relation::Ancestors => ancestors(pivot, self),
             Relation::Descendants => descendants(pivot, self)
+        }
+
+        if !self.changes.contains_key(self.head) {
+            self.head = self.changes.keys().next().unwrap_or(ShardKey::null());
         }
 
         Ok(())
