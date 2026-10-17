@@ -33,17 +33,17 @@ fn shard() -> Result<(), ShardError> {
     shard.change(edits, None);
     let first = shard.head();
     
-    shard.reference(ReferenceKind::Change, "Empty Change".to_string(), first)?;
+    shard.reference(ReferenceKind::Change, "Empty Change", first)?;
     
-    shard.change(Vec::new(), Some("Second Change".to_string()));
+    shard.change(Vec::new(), Some("Second Change"));
     let second = shard.head();
     
     let mut deltas = Vec::new();
-    shard.traverse(&mut deltas, &first, Direction::Older)?;
+    shard.traverse(&mut deltas, first, Direction::Older)?;
     
-    shard.relocate(&[first], Operation::Copy, &second)?;
+    shard.relocate(&[first], Operation::Copy, second)?;
     
-    shard.truncate(Relation::Ancestors, &second)?;
+    shard.truncate(second, Relation::Ancestors)?;
     
     Ok(())
 }
