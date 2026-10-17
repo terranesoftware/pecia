@@ -30,7 +30,16 @@ pub(super) fn descendants_internal(
         descendants_internal(child, removed, shard);
     }
 
-    // Remove this descendant (from all maps)
+    // Remove this descendant from its parents' maps
+    let parents = shard.parents.remove(parent).unwrap();
+    for inner in parents {
+        // If it is still in the map, remove the descendant
+        if let Some(children) = shard.children.get_mut(inner) {
+            let index = children.iter().position(|child| child == &parent).unwrap();
+            children.swap_remove(index);
+        }
+    }
+
+    // Remove this descendant
     shard.changes.remove(parent).unwrap();
-    shard.parents.remove(parent).unwrap();
 }
