@@ -12,6 +12,7 @@ mod tests;
 use crate::{Shard, ShardError, ShardKey, operations::traverse::helpers::{change, create}};
 
 impl Shard {
+    /// Moves from one part of the shard to another.
     pub fn traverse(
         &mut self,
         deltas: &mut Vec<Delta>,
