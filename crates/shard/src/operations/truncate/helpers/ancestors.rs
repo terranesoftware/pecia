@@ -1,3 +1,5 @@
+use std::collections::HashSet;
+
 use crate::{Shard, ShardKey, operations::truncate::helpers::descendants::descendants_internal};
 
 // Recursively remove all of the child's ancestors
@@ -5,13 +7,13 @@ pub(crate) fn ancestors(
     child: ShardKey,
     shard: &mut Shard
 ) {
-    let mut removed = Vec::new();
+    let mut removed = HashSet::new();
     ancestors_internal(child, &mut removed, shard);
 }
 
 fn ancestors_internal(
     child: ShardKey,
-    removed: &mut Vec<ShardKey>,
+    removed: &mut HashSet<ShardKey>,
     shard: &mut Shard
 ) {
     // We've already removed this
@@ -20,7 +22,7 @@ fn ancestors_internal(
     }
     
     // Add it to the list
-    removed.push(child);
+    removed.insert(child);
 
     // Remove the parents for this ancestor
     let parents = shard.parents.remove(child).unwrap();

@@ -1,3 +1,5 @@
+use std::collections::HashSet;
+
 use crate::{Shard, ShardKey};
 
 // Recursively remove all of the parent's descendants
@@ -5,13 +7,13 @@ pub(crate) fn descendants(
     parent: ShardKey,
     shard: &mut Shard
 ) {
-    let mut removed = Vec::new();
+    let mut removed = HashSet::new();
     descendants_internal(parent, &mut removed, shard);
 }
 
 pub(super) fn descendants_internal(
     parent: ShardKey,
-    removed: &mut Vec<ShardKey>,
+    removed: &mut HashSet<ShardKey>,
     shard: &mut Shard
 ) {
     // We've already removed this
@@ -20,7 +22,7 @@ pub(super) fn descendants_internal(
     }
 
     // Add it to the list
-    removed.push(parent);
+    removed.insert(parent);
 
     // Remove the children for this descendant
     let children = shard.children.remove(parent).unwrap();
