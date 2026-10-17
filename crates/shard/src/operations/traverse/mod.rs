@@ -6,6 +6,9 @@ pub use direction::Direction;
 
 mod helpers;
 
+#[cfg(test)]
+mod tests;
+
 use crate::{Shard, ShardError, ShardKey, operations::traverse::helpers::{change, create}};
 
 impl Shard {

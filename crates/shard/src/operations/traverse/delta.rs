@@ -1,6 +1,7 @@
 use std::range::Range;
 
 /// A unit of accumulated change.
+#[derive(Debug, PartialEq)]
 pub struct Delta {
     pub(super) region: Range<usize>,
     pub(super) replacement: Vec<u8>
