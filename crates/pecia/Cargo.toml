@@ -1,6 +1,6 @@
 [package]
 name = "pecia"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2024"
 readme.workspace = true
 description = "Text, and only text."
@@ -12,7 +12,7 @@ categories = ["data-structures", "text-editors", "text-processing"]
 [dependencies]
 indexmap = "2.14.2"
 pecia-buffers = { version = "0.1.0", optional = true }
-pecia-shard = { version = "0.1.0", optional = true }
+pecia-shard = { version = "0.2.0", optional = true }
 time = "0.3.55"
 
 [features]

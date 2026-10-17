@@ -39,11 +39,11 @@
 //!     let second = shard.head();
 //!     
 //!     let mut deltas = Vec::new();
-//!     shard.traverse(&mut deltas, &first, Direction::Older)?;
+//!     shard.traverse(&mut deltas, first, Direction::Older)?;
 //!     
-//!     shard.relocate(&[first], Operation::Copy, &second)?;
+//!     shard.relocate(&[first], Operation::Copy, second)?;
 //!     
-//!     shard.truncate(Relation::Ancestors, &second)?;
+//!     shard.truncate(second, Relation::Ancestors)?;
 //!     
 //!     Ok(())
 //! }
