@@ -6,6 +6,7 @@ fn relocate() {
 
     copy(b, c, d, &mut shard);
     cut(a, b, c, d, &mut shard);
+    cycle(a, d, &mut shard);
 }
 
 fn init() -> (
@@ -17,9 +18,9 @@ fn init() -> (
 ) {
     // Current DAG:
     //    A
-    //  /  \  ↑ Ancestors
-    // B    C
-    //      | ↓ Descendants
+    //  /  \
+    // B    C  ↓ Direction
+    //      |
     //      D
     
     let mut shard = Shard::new();
@@ -48,9 +49,9 @@ fn copy(
 ) {
     // Supposed DAG:
     //    A
-    //  /  \  ↑ Ancestors
-    // B    C
-    //  \  /  ↓ Descendants
+    //  /  \
+    // B    C  ↓ Direction
+    //  \  /
     //   D
 
     shard.relocate(&[b], Operation::Copy, d).unwrap();
@@ -77,9 +78,9 @@ fn cut(
 ) {
     // Supposed DAG:
     //    A
-    //     \    ↑ Ancestors
-    //      C
-    //     / \  ↓ Descendants
+    //     \
+    //      C   ↓ Direction
+    //     / \
     //   D —— B
 
     shard.relocate(&[c], Operation::Cut, b).unwrap();
@@ -123,4 +124,12 @@ fn cut(
         shard.parents.get(d).unwrap(),
         &[c, b]
     );
+}
+
+fn cycle(
+    a: ShardKey,
+    d: ShardKey,
+    shard: &mut Shard
+) {
+    assert!(shard.relocate(&[d], Operation::Copy, a).is_err());
 }
