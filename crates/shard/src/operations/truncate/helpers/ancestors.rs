@@ -31,7 +31,17 @@ fn ancestors_internal(
         descendants_internal(parent, removed, shard);
     }
 
+    // Remove this ancestor from its children's maps
+    let children = shard.children.remove(child).unwrap();
+    for inner in children {
+        // If it is still in the map, remove the ancestor
+        if let Some(parents) = shard.parents.get_mut(inner) {
+            let index = parents.iter().position(|parent| parent == &child).unwrap();
+            parents.swap_remove(index);
+        }
+    }
+
     // Remove this ancestor (from all maps)
     shard.changes.remove(child).unwrap();
-    shard.children.remove(child).unwrap();
+    
 }
